@@ -28,6 +28,6 @@ class Account extends AbstractApi
 
         $account = json_decode($account);
 
-        return new AccountEntity($account->account);
+        return new AccountEntity($account->data);
     }
 }
