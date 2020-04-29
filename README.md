@@ -50,15 +50,12 @@ $adapter = new GuzzleAdapter('your_access_token');
 // create a terraform object with the previous adapter
 $terraform = new TerraformV2($adapter);
 ```
-Me
+Account
 -------
 ```php
 // ...
 // return the the account api
-$me = $awx->me();
-
-// Get the info for the account
-$userInformation = $me->getAll();
+$me = $terraform->getUserInformtion();
 ````
 
 Job Template
