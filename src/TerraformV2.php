@@ -40,11 +40,17 @@ class TerraformV2
     protected $adapter;
 
     /**
+     * @string $url
+     */
+    protected $url;
+
+    /**
      * @param AdapterInterface $adapter
      */
-    public function __construct(AdapterInterface $adapter)
+    public function __construct(AdapterInterface $adapter, $baseApiUrl)
     {
         $this->adapter = $adapter;
+        $this->url = $baseApiUrl;
     }
 
     /**
@@ -52,7 +58,7 @@ class TerraformV2
      */
     public function account()
     {
-        return new Account($this->adapter);
+        return new Account($this->adapter, $this->url);
     }
 
     /**
@@ -60,7 +66,7 @@ class TerraformV2
      */
     public function action()
     {
-        return new Action($this->adapter);
+        return new Action($this->adapter, $this->url);
     }
 
     /**
@@ -68,7 +74,7 @@ class TerraformV2
      */
     public function certificate()
     {
-        return new Certificate($this->adapter);
+        return new Certificate($this->adapter, $this->url);
     }
 
     /**
@@ -76,7 +82,7 @@ class TerraformV2
      */
     public function domain()
     {
-        return new Domain($this->adapter);
+        return new Domain($this->adapter, $this->url);
     }
 
     /**
@@ -84,7 +90,7 @@ class TerraformV2
      */
     public function domainRecord()
     {
-        return new DomainRecord($this->adapter);
+        return new DomainRecord($this->adapter, $this->url);
     }
 
     /**
@@ -92,7 +98,7 @@ class TerraformV2
      */
     public function droplet()
     {
-        return new Droplet($this->adapter);
+        return new Droplet($this->adapter, $this->url);
     }
 
     /**
@@ -100,7 +106,7 @@ class TerraformV2
      */
     public function floatingIp()
     {
-        return new FloatingIp($this->adapter);
+        return new FloatingIp($this->adapter, $this->url);
     }
 
     /**
@@ -108,7 +114,7 @@ class TerraformV2
      */
     public function image()
     {
-        return new Image($this->adapter);
+        return new Image($this->adapter, $this->url);
     }
 
     /**
@@ -116,7 +122,7 @@ class TerraformV2
      */
     public function key()
     {
-        return new Key($this->adapter);
+        return new Key($this->adapter, $this->url);
     }
 
     /**
@@ -124,7 +130,7 @@ class TerraformV2
      */
     public function loadBalancer()
     {
-        return new LoadBalancer($this->adapter);
+        return new LoadBalancer($this->adapter, $this->url);
     }
 
     /**
@@ -132,7 +138,7 @@ class TerraformV2
      */
     public function rateLimit()
     {
-        return new RateLimit($this->adapter);
+        return new RateLimit($this->adapter, $this->url);
     }
 
     /**
@@ -140,7 +146,7 @@ class TerraformV2
      */
     public function region()
     {
-        return new Region($this->adapter);
+        return new Region($this->adapter, $this->url);
     }
 
     /**
@@ -148,7 +154,7 @@ class TerraformV2
      */
     public function size()
     {
-        return new Size($this->adapter);
+        return new Size($this->adapter, $this->url);
     }
 
     /**
@@ -156,7 +162,7 @@ class TerraformV2
      */
     public function volume()
     {
-        return new Volume($this->adapter);
+        return new Volume($this->adapter, $this->url);
     }
 
     /**
@@ -164,6 +170,6 @@ class TerraformV2
      */
     public function snapshot()
     {
-        return new Snapshot($this->adapter);
+        return new Snapshot($this->adapter, $this->url);
     }
 }
