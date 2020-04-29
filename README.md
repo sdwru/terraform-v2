@@ -32,7 +32,7 @@ require_once('vendor/autoload.php');
 
 This package should install guzzle automatically but if not install as follows:
 ```bash
-composer require guzzlehttp/guzzle:^6.0
+composer require guzzlehttp/guzzle:^6.3
 ```
 #### Example
 ```php
