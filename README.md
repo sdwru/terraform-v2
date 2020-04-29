@@ -73,7 +73,7 @@ $organization  = $terraform->organization();
 $allOrgs = $organization->getAll();
 
 // return the organization entity SomeOrgName
-$MyOrg = $organization->getByName('SomeOrgName');
+$myOrg = $organization->getByName('SomeOrgName');
 ```
 
 Contributing
