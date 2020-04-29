@@ -29,10 +29,13 @@ class GuzzleHttpAdapter implements AdapterInterface
      * @param string               $token
      * @param ClientInterface|null $client
      */
-    public function __construct($token, ClientInterface $client = null)
+    public function __construct($token, $verify = true, ClientInterface $client = null)
     {
         if (version_compare(ClientInterface::VERSION, '6') === 1) {
-            $this->client = $client ?: new Client(['headers' => ['Authorization' => sprintf('Bearer %s', $token)]]);
+            $this->client = $client ?: new Client([
+                'headers' => ['Authorization' => sprintf('Bearer %s', $token)],
+                'verify' => $verify
+            ]);
         } else {
             $this->client = $client ?: new Client();
 
