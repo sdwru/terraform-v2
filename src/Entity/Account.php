@@ -18,37 +18,27 @@ namespace TerraformV2\Entity;
 final class Account extends AbstractEntity
 {
     /**
-     * @var int
-     */
-    public $dropletLimit;
-
-    /**
-     * @var int
-     */
-    public $floatingIpLimit;
-
-    /**
      * @var string
      */
-    public $email;
+    public $id;
 
     /**
-     * @var string
+     * @var type
      */
-    public $uuid;
+    public $type;
 
     /**
-     * @var bool
+     * @var object
      */
-    public $emailVerified;
+    public $attributes;
 
     /**
-     * @var string
+     * @var object
      */
-    public $status;
+    public $relationships;
 
     /**
-     * @var string
+     * @var object
      */
-    public $statusMessage;
+    public $links;
 }
