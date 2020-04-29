@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
 class CertificateSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function let($adapter)
     {
@@ -14,11 +14,11 @@ class CertificateSpec extends \PhpSpec\ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\Certificate');
+        $this->shouldHaveType('TerraformV2\Api\Certificate');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_an_array_of_size_entity($adapter)
     {
@@ -41,18 +41,18 @@ class CertificateSpec extends \PhpSpec\ObjectBehavior
 
         foreach ($certificates as $certificate) {
             /**
-             * @var \TerraFormV2\Entity\Certificate|\PhpSpec\Wrapper\Subject $certificate
+             * @var \TerraformV2\Entity\Certificate|\PhpSpec\Wrapper\Subject $certificate
              */
-            $certificate->shouldReturnAnInstanceOf('TerraFormV2\Entity\Certificate');
+            $certificate->shouldReturnAnInstanceOf('TerraformV2\Entity\Certificate');
         }
 
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_a_certificate_entity_by_its_id($adapter)
     {
@@ -69,11 +69,11 @@ class CertificateSpec extends \PhpSpec\ObjectBehavior
             ]));
 
         $this->getById(123)
-             ->shouldReturnAnInstanceOf('TerraFormV2\Entity\Certificate');
+             ->shouldReturnAnInstanceOf('TerraformV2\Entity\Certificate');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_created_certificate($adapter)
     {
@@ -98,11 +98,11 @@ class CertificateSpec extends \PhpSpec\ObjectBehavior
 
         $this
             ->create($data['name'], $data['private_key'], $data['leaf_certificate'], $data['certificate_chain'])
-            ->shouldReturnAnInstanceOf('TerraFormV2\Entity\Certificate');
+            ->shouldReturnAnInstanceOf('TerraformV2\Entity\Certificate');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_deletes_the_certificate_and_returns_nothing($adapter)
     {

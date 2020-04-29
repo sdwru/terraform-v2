@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TerraFormV2 library.
+ * This file is part of the TerraformV2 library.
  *
  * (c) Antoine Corcy <contact@sbin.dk>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace TerraFormV2\Entity;
+namespace TerraformV2\Entity;
 
 /**
  * @author Yassir Hannoun <yassir.hannoun@gmail.com>

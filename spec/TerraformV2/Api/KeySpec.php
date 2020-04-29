@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
-use TerraFormV2\Exception\HttpException;
+use TerraformV2\Exception\HttpException;
 
 class KeySpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function let($adapter)
     {
@@ -16,11 +16,11 @@ class KeySpec extends \PhpSpec\ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\Key');
+        $this->shouldHaveType('TerraformV2\Api\Key');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_an_empty_array($adapter)
     {
@@ -32,7 +32,7 @@ class KeySpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_an_array_of_key_entity($adapter)
     {
@@ -45,17 +45,17 @@ class KeySpec extends \PhpSpec\ObjectBehavior
         $keys->shouldHaveCount($total);
         foreach ($keys as $key) {
             /**
-             * @var \TerraFormV2\Entity\Key|\PhpSpec\Wrapper\Subject $key
+             * @var \TerraformV2\Entity\Key|\PhpSpec\Wrapper\Subject $key
              */
-            $key->shouldReturnAnInstanceOf('TerraFormV2\Entity\Key');
+            $key->shouldReturnAnInstanceOf('TerraformV2\Entity\Key');
         }
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_a_key_entity_get_by_its_id($adapter)
     {
@@ -72,11 +72,11 @@ class KeySpec extends \PhpSpec\ObjectBehavior
                 }
             ');
 
-        $this->getById(123)->shouldReturnAnInstanceOf('TerraFormV2\Entity\Key');
+        $this->getById(123)->shouldReturnAnInstanceOf('TerraformV2\Entity\Key');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_a_key_entity_get_by_its_fingerprint($adapter)
     {
@@ -95,11 +95,11 @@ class KeySpec extends \PhpSpec\ObjectBehavior
 
         $this
             ->getByFingerprint('f5:de:eb:64:2d:6a:b6:d5:bb:06:47:7f:04:4b:f8:e2')
-            ->shouldReturnAnInstanceOf('TerraFormV2\Entity\Key');
+            ->shouldReturnAnInstanceOf('TerraformV2\Entity\Key');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_created_key($adapter)
     {
@@ -119,11 +119,11 @@ class KeySpec extends \PhpSpec\ObjectBehavior
                 }
             ');
 
-        $this->create('foo', 'ssh-rsa foobarbaz...')->shouldReturnAnInstanceOf('TerraFormV2\Entity\Key');
+        $this->create('foo', 'ssh-rsa foobarbaz...')->shouldReturnAnInstanceOf('TerraformV2\Entity\Key');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_updated_key($adapter)
     {
@@ -140,11 +140,11 @@ class KeySpec extends \PhpSpec\ObjectBehavior
                 }
             ');
 
-        $this->update(456, 'bar')->shouldReturnAnInstanceOf('TerraFormV2\Entity\Key');
+        $this->update(456, 'bar')->shouldReturnAnInstanceOf('TerraformV2\Entity\Key');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_throws_an_http_exception_when_trying_to_update_an_inexisting_key($adapter)
     {
@@ -156,7 +156,7 @@ class KeySpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_deletes_the_key_and_returns_nothing($adapter)
     {
@@ -168,7 +168,7 @@ class KeySpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_throws_an_http_exception_when_trying_to_delete_an_inexisting_key($adapter)
     {

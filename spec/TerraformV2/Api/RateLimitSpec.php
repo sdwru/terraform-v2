@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
 class RateLimitSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function let($adapter)
     {
@@ -14,11 +14,11 @@ class RateLimitSpec extends \PhpSpec\ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\RateLimit');
+        $this->shouldHaveType('TerraformV2\Api\RateLimit');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_null_if_there_is_no_previous_request($adapter)
     {
@@ -28,7 +28,7 @@ class RateLimitSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_rate_limit_entity($adapter)
     {
@@ -38,6 +38,6 @@ class RateLimitSpec extends \PhpSpec\ObjectBehavior
             'reset' => time(),
         ]);
 
-        $this->getRateLimit()->shouldReturnAnInstanceOf('TerraFormV2\Entity\RateLimit');
+        $this->getRateLimit()->shouldReturnAnInstanceOf('TerraformV2\Entity\RateLimit');
     }
 }

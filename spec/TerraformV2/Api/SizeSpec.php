@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
 class SizeSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function let($adapter)
     {
@@ -14,11 +14,11 @@ class SizeSpec extends \PhpSpec\ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\Size');
+        $this->shouldHaveType('TerraformV2\Api\Size');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_an_array_of_size_entity($adapter)
     {
@@ -31,13 +31,13 @@ class SizeSpec extends \PhpSpec\ObjectBehavior
         $sizes->shouldHaveCount($total);
         foreach ($sizes as $size) {
             /**
-             * @var \TerraFormV2\Entity\Size|\PhpSpec\Wrapper\Subject $size
+             * @var \TerraformV2\Entity\Size|\PhpSpec\Wrapper\Subject $size
              */
-            $size->shouldReturnAnInstanceOf('TerraFormV2\Entity\Size');
+            $size->shouldReturnAnInstanceOf('TerraformV2\Entity\Size');
         }
 
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 }

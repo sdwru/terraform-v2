@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TerraFormV2 library.
+ * This file is part of the TerraformV2 library.
  *
  * (c) Antoine Corcy <contact@sbin.dk>
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace TerraFormV2\Api;
+namespace TerraformV2\Api;
 
-use TerraFormV2\Entity\Certificate as CertificateEntity;
+use TerraformV2\Entity\Certificate as CertificateEntity;
 
 /**
  * @author Jacob Holmes <jwh315@cox.net>

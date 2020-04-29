@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TerraFormV2 library.
+ * This file is part of the TerraformV2 library.
  *
  * (c) Antoine Corcy <contact@sbin.dk>
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace TerraFormV2\Api;
+namespace TerraformV2\Api;
 
-use TerraFormV2\Entity\AbstractEntity;
-use TerraFormV2\Entity\ForwardingRule as ForwardRuleEntity;
-use TerraFormV2\Entity\HealthCheck as HealthCheckEntity;
-use TerraFormV2\Entity\LoadBalancer as LoadBalancerEntity;
-use TerraFormV2\Exception\HttpException;
+use TerraformV2\Entity\AbstractEntity;
+use TerraformV2\Entity\ForwardingRule as ForwardRuleEntity;
+use TerraformV2\Entity\HealthCheck as HealthCheckEntity;
+use TerraformV2\Entity\LoadBalancer as LoadBalancerEntity;
+use TerraformV2\Exception\HttpException;
 
 /**
  * @author Jacob Holmes <jwh315@cox.net>

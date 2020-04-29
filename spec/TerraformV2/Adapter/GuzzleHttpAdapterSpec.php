@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\TerraFormV2\Adapter;
+namespace spec\TerraformV2\Adapter;
 
 class GuzzleHttpAdapterSpec extends \PhpSpec\ObjectBehavior
 {
@@ -20,7 +20,7 @@ class GuzzleHttpAdapterSpec extends \PhpSpec\ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Adapter\GuzzleHttpAdapter');
+        $this->shouldHaveType('TerraformV2\Adapter\GuzzleHttpAdapter');
     }
 
     /**

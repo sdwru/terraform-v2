@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
-use TerraFormV2\Exception\HttpException;
+use TerraformV2\Exception\HttpException;
 
 class VolumeSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function let($adapter)
     {
@@ -16,11 +16,11 @@ class VolumeSpec extends \PhpSpec\ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\Volume');
+        $this->shouldHaveType('TerraformV2\Api\Volume');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_empty_array($adapter)
     {
@@ -32,7 +32,7 @@ class VolumeSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_volume_entity($adapter)
     {
@@ -88,19 +88,19 @@ EOT;
         $volumes->shouldHaveCount($total);
 
         /**
-         * @var \TerraFormV2\Entity\Volume|\PhpSpec\Wrapper\Subject $volume
+         * @var \TerraformV2\Entity\Volume|\PhpSpec\Wrapper\Subject $volume
          */
         $volume = $volumes[0];
-        $volume->shouldReturnAnInstanceOf('TerraFormV2\Entity\Volume');
-        $volume->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $volume->shouldReturnAnInstanceOf('TerraformV2\Entity\Volume');
+        $volume->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
 
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_volume_entity_with_region($adapter)
     {
@@ -156,20 +156,20 @@ EOT;
         $volumes->shouldHaveCount($total);
 
         /**
-         * @var \TerraFormV2\Entity\Volume|\PhpSpec\Wrapper\Subject $volume
+         * @var \TerraformV2\Entity\Volume|\PhpSpec\Wrapper\Subject $volume
          */
         $volume = $volumes[0];
-        $volume->shouldReturnAnInstanceOf('TerraFormV2\Entity\Volume');
-        $volume->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $volume->shouldReturnAnInstanceOf('TerraformV2\Entity\Volume');
+        $volume->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
         $volume->region->slug->shouldBeEqualTo('nyc1');
 
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_volume_entity_with_region_and_name($adapter)
     {
@@ -225,21 +225,21 @@ EOT;
         $volumes->shouldHaveCount($total);
 
         /**
-         * @var \TerraFormV2\Entity\Volume|\PhpSpec\Wrapper\Subject $volume
+         * @var \TerraformV2\Entity\Volume|\PhpSpec\Wrapper\Subject $volume
          */
         $volume = $volumes[0];
-        $volume->shouldReturnAnInstanceOf('TerraFormV2\Entity\Volume');
+        $volume->shouldReturnAnInstanceOf('TerraformV2\Entity\Volume');
         $volume->name->shouldBeEqualTo('example');
-        $volume->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $volume->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
         $volume->region->slug->shouldBeEqualTo('nyc1');
 
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_a_volume_entity_with_id($adapter)
     {
@@ -285,15 +285,15 @@ EOT;
 
         $volume = $this->getById('506f78a4-e098-11e5-ad9f-000f53306ae1');
 
-        $volume->shouldReturnAnInstanceOf('TerraFormV2\Entity\Volume');
+        $volume->shouldReturnAnInstanceOf('TerraformV2\Entity\Volume');
         $volume->id->shouldBeEqualTo('506f78a4-e098-11e5-ad9f-000f53306ae1');
         $volume->name->shouldBeEqualTo('example');
-        $volume->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $volume->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
         $volume->region->slug->shouldBeEqualTo('nyc1');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_created_volume_entity($adapter)
     {
@@ -343,7 +343,7 @@ EOT;
 
         $volume = $this->create('example', 'Block store for examples', 10, 'nyc1');
 
-        $volume->shouldReturnAnInstanceOf('TerraFormV2\Entity\Volume');
+        $volume->shouldReturnAnInstanceOf('TerraformV2\Entity\Volume');
         $volume->id->shouldBeEqualTo('506f78a4-e098-11e5-ad9f-000f53306ae1');
         $volume->name->shouldBeEqualTo('example');
         $volume->description->shouldBeEqualTo('Block store for examples');
@@ -353,7 +353,7 @@ EOT;
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_send_payload_with_snapshot_id($adapter)
     {
@@ -405,7 +405,7 @@ EOT;
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_if_not_possible_to_create_a_volume($adapter)
     {
@@ -419,7 +419,7 @@ EOT;
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_deletes_the_volume_with_id_and_returns_nothing($adapter)
     {
@@ -431,7 +431,7 @@ EOT;
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_when_trying_to_delete_with_id_inexisting_volume($adapter)
     {
@@ -443,7 +443,7 @@ EOT;
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_deletes_the_volume_with_region_and_drivename_and_returns_nothing($adapter)
     {
@@ -455,7 +455,7 @@ EOT;
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_when_trying_to_delete_with_region_and_drivename_inexisting_volume($adapter)
     {
@@ -467,7 +467,7 @@ EOT;
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_attaching($adapter)
     {
@@ -515,12 +515,12 @@ EOT;
             ->willReturn($response);
 
         $action = $this->attach('506f78a4-e098-11e5-ad9f-000f53306ae1', 123456, 'nyc');
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_detaching($adapter)
     {
@@ -568,12 +568,12 @@ EOT;
             ->willReturn($response);
 
         $action = $this->detach('506f78a4-e098-11e5-ad9f-000f53306ae1', 123456, 'nyc');
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_resizing($adapter)
     {
@@ -621,12 +621,12 @@ EOT;
             ->willReturn($response);
 
         $action = $this->resize('506f78a4-e098-11e5-ad9f-000f53306ae1', 20, 'nyc');
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_when_retrieving_action($adapter)
     {
@@ -672,12 +672,12 @@ EOT;
 
         $action = $this->getActionById('506f78a4-e098-11e5-ad9f-000f53306ae1', 72531856);
         $action->id->shouldEqual(72531856);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_action_entity($adapter)
     {
@@ -735,19 +735,19 @@ EOT;
         $actions->shouldHaveCount($total);
 
         /**
-         * @var \TerraFormV2\Entity\Action|\PhpSpec\Wrapper\Subject $action
+         * @var \TerraformV2\Entity\Action|\PhpSpec\Wrapper\Subject $action
          */
         $action = $actions[0];
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
 
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_volumes_snapshots_which_are_snapshot_entity($adapter)
     {
@@ -809,17 +809,17 @@ EOT;
         $snapshots->shouldHaveCount($total);
         foreach ($snapshots as $snapshot) {
             /**
-             * @var \TerraFormV2\Entity\Snapshot|\PhpSpec\Wrapper\Subject $snapshot
+             * @var \TerraformV2\Entity\Snapshot|\PhpSpec\Wrapper\Subject $snapshot
              */
-            $snapshot->shouldReturnAnInstanceOf('TerraFormV2\Entity\Snapshot');
+            $snapshot->shouldReturnAnInstanceOf('TerraformV2\Entity\Snapshot');
         }
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_snapshot_entity_after_snapshot_creation($adapter)
     {
@@ -846,7 +846,7 @@ EOT;
             ->willReturn($response);
 
         $snapshot = $this->snapshot('506f78a4-e098-11e5-ad9f-000f53306ae1', 'snapshot1-volume');
-        $snapshot->shouldBeAnInstanceOf('TerraFormV2\Entity\Snapshot');
+        $snapshot->shouldBeAnInstanceOf('TerraformV2\Entity\Snapshot');
         $snapshot->id->shouldBe('902068ee-3b3f-11e7-93a1-0242ac116705');
         $snapshot->name->shouldBe('snapshot1-volume');
     }

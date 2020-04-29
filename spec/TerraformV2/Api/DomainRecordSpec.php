@@ -1,14 +1,14 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
-use TerraFormV2\Exception\HttpException;
-use TerraFormV2\Exception\InvalidRecordException;
+use TerraformV2\Exception\HttpException;
+use TerraformV2\Exception\InvalidRecordException;
 
 class DomainRecordSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function let($adapter)
     {
@@ -17,11 +17,11 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\DomainRecord');
+        $this->shouldHaveType('TerraformV2\Api\DomainRecord');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_an_empty_array($adapter)
     {
@@ -33,7 +33,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_an_array_of_domain_record_entity($adapter)
     {
@@ -47,17 +47,17 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
         $domainRecords->shouldHaveCount($total);
         foreach ($domainRecords as $domainRecord) {
             /**
-             * @var \TerraFormV2\Entity\DomainRecord|\PhpSpec\Wrapper\Subject $domainRecord
+             * @var \TerraformV2\Entity\DomainRecord|\PhpSpec\Wrapper\Subject $domainRecord
              */
-            $domainRecord->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+            $domainRecord->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
         }
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_domain_get_by_its_id($adapter)
     {
@@ -80,12 +80,12 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
                 }
             ');
 
-        $this->getById('foo.dk', 123)->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+        $this->getById('foo.dk', 123)->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
         $this->getMeta()->shouldBeNull();
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_throws_an_http_exception_if_requested_domain_record_does_not_exist($adapter)
     {
@@ -97,7 +97,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_created_domain_record_type_a($adapter)
     {
@@ -123,11 +123,11 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
                 }
             ');
 
-        $this->create('foo.dk', 'a', '@', '8.8.8.8')->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+        $this->create('foo.dk', 'a', '@', '8.8.8.8')->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_created_domain_record_type_aaaa($adapter)
     {
@@ -155,11 +155,11 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
 
         $this
             ->create('foo.dk', 'aaaa', 'ipv6host', '2001:db8::ff00:42:8329')
-            ->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+            ->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_created_domain_record_type_cname($adapter)
     {
@@ -187,11 +187,11 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
 
         $this
             ->create('foo.dk', 'cname', 'newalias', 'hosttarget')
-            ->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+            ->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_created_domain_record_type_txt($adapter)
     {
@@ -219,11 +219,11 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
 
         $this
             ->create('foo.dk', 'txt', 'recordname', 'whatever')
-            ->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+            ->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_created_domain_record_type_ns($adapter)
     {
@@ -251,11 +251,11 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
 
         $this
             ->create('foo.dk', 'ns', 'not_used', 'ns1.digitalocean.com.')
-            ->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+            ->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_created_domain_record_type_srv($adapter)
     {
@@ -283,11 +283,11 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
 
         $this
             ->create('foo.dk', 'srv', 'servicename', 'targethost', 0, 1, 2)
-            ->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+            ->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_created_domain_record_type_mx($adapter)
     {
@@ -315,11 +315,11 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
 
         $this
             ->create('foo.dk', 'mx', 'new-name', '127.0.0.1', 0)
-            ->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+            ->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_created_domain_record_type_caa($adapter)
     {
@@ -347,11 +347,11 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
 
         $this
             ->create('foo.dk', 'caa', 'recordname', 'letsencrypt.org', null, null, null, 10, 'iodef')
-            ->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+            ->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_created_domain_record_with_ttl($adapter)
     {
@@ -377,7 +377,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
                 }
             ');
 
-        $this->create('foo.dk', 'a', '@', '8.8.8.8', null, null, null, null, null, 60)->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+        $this->create('foo.dk', 'a', '@', '8.8.8.8', null, null, null, null, null, 60)->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
     }
 
     function it_throws_an_invalid_record_exception_if_unknown_type()
@@ -388,7 +388,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_updated_domain_record($adapter)
     {
@@ -416,11 +416,11 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
 
         $this
             ->update('foo.dk', 456, 'new-name', '127.0.0.1', null, 80, 2, null, null, 22)
-            ->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+            ->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_updates_domain_record_fields($adapter)
     {
@@ -448,11 +448,11 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
 
         $this
             ->updateFields('foo.dk', 123, ['name' => 'servicename', 'data' => 'targethost', 'port' => 1, 'weight' => 2, 'ttl' => 60])
-            ->shouldReturnAnInstanceOf('TerraFormV2\Entity\DomainRecord');
+            ->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_throws_an_http_exception_when_trying_to_update_inexisting_domain_record($adapter)
     {
@@ -464,7 +464,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_deletes_given_domain_record_and_returns_nothing($adapter)
     {
@@ -476,7 +476,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_throws_an_http_exception_when_trying_to_delete_inexisting_domain_record($adapter)
     {

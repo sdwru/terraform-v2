@@ -1,8 +1,8 @@
 <?php
 
-namespace TerraFormV2\Adapter;
+namespace TerraformV2\Adapter;
 
-use TerraFormV2\Exception\HttpException;
+use TerraformV2\Exception\HttpException;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;

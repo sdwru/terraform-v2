@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
 class RegionSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function let($adapter)
     {
@@ -14,11 +14,11 @@ class RegionSpec extends \PhpSpec\ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\Region');
+        $this->shouldHaveType('TerraformV2\Api\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_an_array_of_region_entity($adapter)
     {
@@ -30,9 +30,9 @@ class RegionSpec extends \PhpSpec\ObjectBehavior
 
         foreach ($regions as $region) {
             /**
-             * @var \TerraFormV2\Entity\Region|\PhpSpec\Wrapper\Subject $region
+             * @var \TerraformV2\Entity\Region|\PhpSpec\Wrapper\Subject $region
              */
-            $region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+            $region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
         }
     }
 }

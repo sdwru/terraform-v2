@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
-use TerraFormV2\Exception\HttpException;
+use TerraformV2\Exception\HttpException;
 
 class FloatingIpSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function let($adapter)
     {
@@ -16,11 +16,11 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\FloatingIp');
+        $this->shouldHaveType('TerraformV2\Api\FloatingIp');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_empty_array($adapter)
     {
@@ -32,7 +32,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_floating_ip_entity($adapter)
     {
@@ -46,17 +46,17 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
         $ips->shouldHaveCount($total);
         foreach ($ips as $ip) {
             /**
-             * @var \TerraFormV2\Entity\FloatingIp|\PhpSpec\Wrapper\Subject $ip
+             * @var \TerraformV2\Entity\FloatingIp|\PhpSpec\Wrapper\Subject $ip
              */
-            $ip->shouldReturnAnInstanceOf('TerraFormV2\Entity\FloatingIp');
+            $ip->shouldReturnAnInstanceOf('TerraformV2\Entity\FloatingIp');
         }
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_a_floating_ip_entity_get_by_its_id($adapter)
     {
@@ -97,12 +97,12 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
         $ip = $this->getById('45.55.96.47');
         $ip->ip->shouldBe('45.55.96.47');
         $ip->droplet->shouldBeNull();
-        $ip->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $ip->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
         $this->getMeta()->shouldBeNull();
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_if_requested_floating_id_does_not_exist($adapter)
     {
@@ -114,7 +114,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_created_floating_id_entity_assigned_to_droplet($adapter)
     {
@@ -122,11 +122,11 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
             ->post('https://api.digitalocean.com/v2/floating_ips', ['droplet_id' => 123456])
             ->willReturn('{"floating_ip": {}}');
 
-        $this->createAssigned(123456)->shouldReturnAnInstanceOf('TerraFormV2\Entity\FloatingIp');
+        $this->createAssigned(123456)->shouldReturnAnInstanceOf('TerraformV2\Entity\FloatingIp');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_created_floating_id_entity_reserved_by_region($adapter)
     {
@@ -134,11 +134,11 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
             ->post('https://api.digitalocean.com/v2/floating_ips', ['region' => 'nyc3'])
             ->willReturn('{"floating_ip": {}}');
 
-        $this->createReserved('nyc3')->shouldReturnAnInstanceOf('TerraFormV2\Entity\FloatingIp');
+        $this->createReserved('nyc3')->shouldReturnAnInstanceOf('TerraformV2\Entity\FloatingIp');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_deletes_the_floating_ip_and_returns_nothing($adapter)
     {
@@ -150,7 +150,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_when_trying_to_delete_inexisting_floating_ip($adapter)
     {
@@ -162,7 +162,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_floating_ips_action_entity($adapter)
     {
@@ -176,30 +176,30 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
         $actions->shouldHaveCount($total);
         foreach ($actions as $action) {
             /**
-             * @var \TerraFormV2\Entity\Action|\PhpSpec\Wrapper\Subject $action
+             * @var \TerraformV2\Entity\Action|\PhpSpec\Wrapper\Subject $action
              */
-            $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-            $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+            $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+            $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
         }
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_given_floating_ips_action_get_by_its_id($adapter)
     {
         $adapter->get('https://api.digitalocean.com/v2/floating_ips/123/actions/456')->willReturn('{"action": {"region": {}}}');
 
         $action = $this->getActionById(123, 456);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_assign($adapter)
     {
@@ -208,12 +208,12 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->assign(123, 456);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_unassign($adapter)
     {
@@ -222,7 +222,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->unassign(123);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 }

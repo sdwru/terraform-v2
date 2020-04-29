@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
-use TerraFormV2\Exception\HttpException;
+use TerraformV2\Exception\HttpException;
 
 class ImageSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function let($adapter)
     {
@@ -16,11 +16,11 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\Image');
+        $this->shouldHaveType('TerraformV2\Api\Image');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_empty_array($adapter)
     {
@@ -32,7 +32,7 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_image_entity($adapter)
     {
@@ -46,17 +46,17 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
         $images->shouldHaveCount($total);
         foreach ($images as $image) {
             /**
-             * @var \TerraFormV2\Entity\Image|\PhpSpec\Wrapper\Subject $image
+             * @var \TerraformV2\Entity\Image|\PhpSpec\Wrapper\Subject $image
              */
-            $image->shouldReturnAnInstanceOf('TerraFormV2\Entity\Image');
+            $image->shouldReturnAnInstanceOf('TerraformV2\Entity\Image');
         }
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_distribution_image_entity($adapter)
     {
@@ -70,17 +70,17 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
         $images->shouldHaveCount($total);
         foreach ($images as $image) {
             /**
-             * @var \TerraFormV2\Entity\Image|\PhpSpec\Wrapper\Subject $image
+             * @var \TerraformV2\Entity\Image|\PhpSpec\Wrapper\Subject $image
              */
-            $image->shouldReturnAnInstanceOf('TerraFormV2\Entity\Image');
+            $image->shouldReturnAnInstanceOf('TerraformV2\Entity\Image');
         }
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_application_image_entity($adapter)
     {
@@ -94,17 +94,17 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
         $images->shouldHaveCount($total);
         foreach ($images as $image) {
             /**
-             * @var \TerraFormV2\Entity\Image|\PhpSpec\Wrapper\Subject $image
+             * @var \TerraformV2\Entity\Image|\PhpSpec\Wrapper\Subject $image
              */
-            $image->shouldReturnAnInstanceOf('TerraFormV2\Entity\Image');
+            $image->shouldReturnAnInstanceOf('TerraformV2\Entity\Image');
         }
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_private_application_image_entity($adapter)
     {
@@ -118,17 +118,17 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
         $images->shouldHaveCount($total);
         foreach ($images as $image) {
             /**
-             * @var \TerraFormV2\Entity\Image|\PhpSpec\Wrapper\Subject $image
+             * @var \TerraformV2\Entity\Image|\PhpSpec\Wrapper\Subject $image
              */
-            $image->shouldReturnAnInstanceOf('TerraFormV2\Entity\Image');
+            $image->shouldReturnAnInstanceOf('TerraformV2\Entity\Image');
         }
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_private_image_entity($adapter)
     {
@@ -142,17 +142,17 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
         $images->shouldHaveCount($total);
         foreach ($images as $image) {
             /**
-             * @var \TerraFormV2\Entity\Image|\PhpSpec\Wrapper\Subject $image
+             * @var \TerraformV2\Entity\Image|\PhpSpec\Wrapper\Subject $image
              */
-            $image->shouldReturnAnInstanceOf('TerraFormV2\Entity\Image');
+            $image->shouldReturnAnInstanceOf('TerraformV2\Entity\Image');
         }
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_image_entity_get_by_its_id($adapter)
     {
@@ -177,13 +177,13 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
             ');
 
         $image = $this->getById(123);
-        $image->shouldReturnAnInstanceOf('TerraFormV2\Entity\Image');
+        $image->shouldReturnAnInstanceOf('TerraformV2\Entity\Image');
         $image->sizeGigabytes->shouldBe(2.34);
         $this->getMeta()->shouldBeNull();
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_image_entity_get_by_its_slug($adapter)
     {
@@ -206,11 +206,11 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
                 }
             ');
 
-        $this->getBySlug('foo-bar')->shouldReturnAnInstanceOf('TerraFormV2\Entity\Image');
+        $this->getBySlug('foo-bar')->shouldReturnAnInstanceOf('TerraformV2\Entity\Image');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_updated_image($adapter)
     {
@@ -233,11 +233,11 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
                 }
             ');
 
-        $this->update(123, 'bar-baz')->shouldReturnAnInstanceOf('TerraFormV2\Entity\Image');
+        $this->update(123, 'bar-baz')->shouldReturnAnInstanceOf('TerraformV2\Entity\Image');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_when_trying_to_update_an_inexisting_image($adapter)
     {
@@ -249,7 +249,7 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_deletes_the_image_and_returns_nothing($adapter)
     {
@@ -261,7 +261,7 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_when_trying_to_delete_an_inexisting_image($adapter)
     {
@@ -273,7 +273,7 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_transfer_the_image_to_an_other_region_and_returns_its_image($adapter)
     {
@@ -302,12 +302,12 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
             ');
 
         $image = $this->transfer(123, 'nyc2');
-        $image->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $image->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $image->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $image->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_if_trying_to_transfer_to_unknown_region_slug($adapter)
     {
@@ -319,7 +319,7 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_can_convert_the_image_to_a_snapshot($adapter)
     {
@@ -342,12 +342,12 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
             ');
 
         $image = $this->convert(123);
-        $image->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
+        $image->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
         $image->region->shouldReturn(null);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_requested_action_entity_of_the_given_image($adapter)
     {
@@ -376,12 +376,12 @@ class ImageSpec extends \PhpSpec\ObjectBehavior
             ');
 
         $action = $this->getAction(123, 456);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_when_retrieving_non_existing_image_action($adapter)
     {

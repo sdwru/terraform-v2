@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\TerraFormV2\Entity;
+namespace spec\TerraformV2\Entity;
 
 class DropletSpec extends \PhpSpec\ObjectBehavior
 {
@@ -15,6 +15,6 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Entity\Droplet');
+        $this->shouldHaveType('TerraformV2\Entity\Droplet');
     }
 }

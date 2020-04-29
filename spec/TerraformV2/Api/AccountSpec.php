@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
 class AccountSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function let($adapter)
     {
@@ -14,11 +14,11 @@ class AccountSpec extends \PhpSpec\ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\Account');
+        $this->shouldHaveType('TerraformV2\Api\Account');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_user_information($adapter)
     {
@@ -38,6 +38,6 @@ class AccountSpec extends \PhpSpec\ObjectBehavior
                 }
             ');
 
-        $this->getUserInformation()->shouldReturnAnInstanceOf('TerraFormV2\Entity\Account');
+        $this->getUserInformation()->shouldReturnAnInstanceOf('TerraformV2\Entity\Account');
     }
 }

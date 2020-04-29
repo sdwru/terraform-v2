@@ -1,14 +1,14 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
-use TerraFormV2\Entity\Droplet;
-use TerraFormV2\Exception\HttpException;
+use TerraformV2\Entity\Droplet;
+use TerraformV2\Exception\HttpException;
 
 class DropletSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function let($adapter)
     {
@@ -17,11 +17,11 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\Droplet');
+        $this->shouldHaveType('TerraformV2\Api\Droplet');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_empty_array($adapter)
     {
@@ -33,7 +33,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_droplet_entity($adapter)
     {
@@ -47,17 +47,17 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
         $droplets->shouldHaveCount($total);
         foreach ($droplets as $droplet) {
             /**
-             * @var \TerraFormV2\Entity\Droplet|\PhpSpec\Wrapper\Subject $droplet
+             * @var \TerraformV2\Entity\Droplet|\PhpSpec\Wrapper\Subject $droplet
              */
-            $droplet->shouldReturnAnInstanceOf('TerraFormV2\Entity\Droplet');
+            $droplet->shouldReturnAnInstanceOf('TerraformV2\Entity\Droplet');
         }
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_droplet_neighbors_for_a_given_droplet_id($adapter)
     {
@@ -70,14 +70,14 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
         $droplets->shouldHaveCount(3);
         foreach ($droplets as $droplet) {
             /**
-             * @var \TerraFormV2\Entity\Droplet|\PhpSpec\Wrapper\Subject $droplet
+             * @var \TerraformV2\Entity\Droplet|\PhpSpec\Wrapper\Subject $droplet
              */
-            $droplet->shouldReturnAnInstanceOf('TerraFormV2\Entity\Droplet');
+            $droplet->shouldReturnAnInstanceOf('TerraformV2\Entity\Droplet');
         }
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_upgrade_entity($adapter)
     {
@@ -90,14 +90,14 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
         $upgrades->shouldHaveCount(3);
         foreach ($upgrades as $upgrade) {
             /**
-             * @var \TerraFormV2\Entity\Upgrade|\PhpSpec\Wrapper\Subject $upgrade
+             * @var \TerraformV2\Entity\Upgrade|\PhpSpec\Wrapper\Subject $upgrade
              */
-            $upgrade->shouldReturnAnInstanceOf('TerraFormV2\Entity\Upgrade');
+            $upgrade->shouldReturnAnInstanceOf('TerraformV2\Entity\Upgrade');
         }
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_droplet_that_are_running_on_the_same_physical_hardware($adapter)
     {
@@ -110,14 +110,14 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
         $neighbors->shouldHaveCount(3);
         foreach ($neighbors as $neighbor) {
             /**
-             * @var \TerraFormV2\Entity\Droplet|\PhpSpec\Wrapper\Subject $neighbor
+             * @var \TerraformV2\Entity\Droplet|\PhpSpec\Wrapper\Subject $neighbor
              */
-            $neighbor->shouldReturnAnInstanceOf('TerraFormV2\Entity\Droplet');
+            $neighbor->shouldReturnAnInstanceOf('TerraformV2\Entity\Droplet');
         }
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_a_droplet_entity_get_by_its_id($adapter)
     {
@@ -203,7 +203,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ');
 
         $droplet = $this->getById(14);
-        $droplet->shouldReturnAnInstanceOf('TerraFormV2\Entity\Droplet');
+        $droplet->shouldReturnAnInstanceOf('TerraformV2\Entity\Droplet');
         $droplet->tags->shouldBeArray();
         $droplet->tags->shouldHaveCount(2);
         $droplet->networks->shouldBeArray();
@@ -211,14 +211,14 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
 
         foreach ($droplet->networks as $dropletNetwork) {
             /**
-             * @var \TerraFormV2\Entity\Network|\PhpSpec\Wrapper\Subject $dropletNetwork
+             * @var \TerraformV2\Entity\Network|\PhpSpec\Wrapper\Subject $dropletNetwork
              */
-            $dropletNetwork->shouldReturnAnInstanceOf('TerraFormV2\Entity\Network');
+            $dropletNetwork->shouldReturnAnInstanceOf('TerraformV2\Entity\Network');
         }
 
-        $droplet->kernel->shouldReturnAnInstanceOf('TerraFormV2\Entity\Kernel');
-        $droplet->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
-        $droplet->image->shouldReturnAnInstanceOf('TerraFormV2\Entity\Image');
+        $droplet->kernel->shouldReturnAnInstanceOf('TerraformV2\Entity\Kernel');
+        $droplet->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
+        $droplet->image->shouldReturnAnInstanceOf('TerraformV2\Entity\Image');
         $droplet->volumeIds->shouldBe([
             '123321123',
             '789987789',
@@ -229,11 +229,11 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
         $droplet->privateNetworkingEnabled->shouldBe(true);
         $droplet->ipv6Enabled->shouldBe(true);
         $droplet->virtIOEnabled->shouldBe(true);
-        $droplet->nextBackupWindow->shouldReturnAnInstanceOf('TerraFormV2\Entity\NextBackupWindow');
+        $droplet->nextBackupWindow->shouldReturnAnInstanceOf('TerraformV2\Entity\NextBackupWindow');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_a_droplet_entity_even_if_backup_is_disabled($adapter)
     {
@@ -279,7 +279,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ');
 
         $droplet = $this->getById(1234);
-        $droplet->shouldReturnAnInstanceOf('TerraFormV2\Entity\Droplet');
+        $droplet->shouldReturnAnInstanceOf('TerraformV2\Entity\Droplet');
         $droplet->tags->shouldBeArray();
         $droplet->tags->shouldHaveCount(0);
         $droplet->networks->shouldBeArray();
@@ -287,25 +287,25 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
 
         foreach ($droplet->networks as $dropletNetwork) {
             /**
-             * @var \TerraFormV2\Entity\Network|\PhpSpec\Wrapper\Subject $dropletNetwork
+             * @var \TerraformV2\Entity\Network|\PhpSpec\Wrapper\Subject $dropletNetwork
              */
-            $dropletNetwork->shouldReturnAnInstanceOf('TerraFormV2\Entity\Network');
+            $dropletNetwork->shouldReturnAnInstanceOf('TerraformV2\Entity\Network');
         }
 
-        $droplet->kernel->shouldReturnAnInstanceOf('TerraFormV2\Entity\Kernel');
-        $droplet->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
-        $droplet->image->shouldReturnAnInstanceOf('TerraFormV2\Entity\Image');
+        $droplet->kernel->shouldReturnAnInstanceOf('TerraformV2\Entity\Kernel');
+        $droplet->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
+        $droplet->image->shouldReturnAnInstanceOf('TerraformV2\Entity\Image');
         $this->getMeta()->shouldBeNull();
         $droplet->sizeSlug->shouldBe('512mb');
         $droplet->backupsEnabled->shouldBe(true);
         $droplet->privateNetworkingEnabled->shouldBe(true);
         $droplet->ipv6Enabled->shouldBe(true);
         $droplet->virtIOEnabled->shouldBe(true);
-        $droplet->nextBackupWindow->shouldReturnAnInstanceOf('TerraFormV2\Entity\NextBackupWindow');
+        $droplet->nextBackupWindow->shouldReturnAnInstanceOf('TerraformV2\Entity\NextBackupWindow');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_if_requested_droplet_does_not_exist($adapter)
     {
@@ -317,7 +317,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_created_droplet_entity_without_ssh_keys($adapter)
     {
@@ -328,11 +328,11 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             )
             ->willReturn('{"droplet": {}}');
 
-        $this->create('foo', 'nyc1', '512mb', 123456, false, false, false, [], '', true, ['123', '456'], ['foo', 'bar'])->shouldReturnAnInstanceOf('TerraFormV2\Entity\Droplet');
+        $this->create('foo', 'nyc1', '512mb', 123456, false, false, false, [], '', true, ['123', '456'], ['foo', 'bar'])->shouldReturnAnInstanceOf('TerraformV2\Entity\Droplet');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_created_droplet_entity_with_ssh_keys($adapter)
     {
@@ -345,11 +345,11 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
 
         $this
             ->create('bar', 'nyc2', '512mb', 'ubuntu', true, true, true, ['123', '456', '789'], '', true, ['123', '456'], ['foo', 'bar'])
-            ->shouldReturnAnInstanceOf('TerraFormV2\Entity\Droplet');
+            ->shouldReturnAnInstanceOf('TerraformV2\Entity\Droplet');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_can_create_multiple_droplets_at_the_same_time($adapter)
     {
@@ -389,7 +389,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_if_not_possible_to_create_a_droplet($adapter)
     {
@@ -404,7 +404,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_deletes_the_droplet_and_returns_nothing($adapter)
     {
@@ -416,7 +416,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_when_trying_to_delete_inexisting_droplet($adapter)
     {
@@ -428,7 +428,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_droplets_kernel_entity($adapter)
     {
@@ -442,17 +442,17 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
         $kernels->shouldHaveCount($total);
         foreach ($kernels as $kernel) {
             /**
-             * @var \TerraFormV2\Entity\Kernel|\PhpSpec\Wrapper\Subject $kernel
+             * @var \TerraformV2\Entity\Kernel|\PhpSpec\Wrapper\Subject $kernel
              */
-            $kernel->shouldReturnAnInstanceOf('TerraFormV2\Entity\Kernel');
+            $kernel->shouldReturnAnInstanceOf('TerraformV2\Entity\Kernel');
         }
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_droplets_snapshots_which_are_image_entity($adapter)
     {
@@ -466,17 +466,17 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
         $snapshots->shouldHaveCount($total);
         foreach ($snapshots as $snapshot) {
             /**
-             * @var \TerraFormV2\Entity\Image|\PhpSpec\Wrapper\Subject $snapshot
+             * @var \TerraformV2\Entity\Image|\PhpSpec\Wrapper\Subject $snapshot
              */
-            $snapshot->shouldReturnAnInstanceOf('TerraFormV2\Entity\Image');
+            $snapshot->shouldReturnAnInstanceOf('TerraformV2\Entity\Image');
         }
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_droplets_backup_which_are_image_entity($adapter)
     {
@@ -489,17 +489,17 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
         $backups->shouldHaveCount($total);
         foreach ($backups as $backup) {
             /**
-             * @var \TerraFormV2\Entity\Image|\PhpSpec\Wrapper\Subject $backup
+             * @var \TerraformV2\Entity\Image|\PhpSpec\Wrapper\Subject $backup
              */
-            $backup->shouldReturnAnInstanceOf('TerraFormV2\Entity\Image');
+            $backup->shouldReturnAnInstanceOf('TerraformV2\Entity\Image');
         }
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_droplets_action_entity($adapter)
     {
@@ -513,30 +513,30 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
         $actions->shouldHaveCount($total);
         foreach ($actions as $action) {
             /**
-             * @var \TerraFormV2\Entity\Action|\PhpSpec\Wrapper\Subject $action
+             * @var \TerraformV2\Entity\Action|\PhpSpec\Wrapper\Subject $action
              */
-            $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-            $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+            $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+            $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
         }
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_given_droplets_action_get_by_its_id($adapter)
     {
         $adapter->get('https://api.digitalocean.com/v2/droplets/123/actions/456')->willReturn('{"action": {"region": {}}}');
 
         $action = $this->getActionById(123, 456);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_reboot($adapter)
     {
@@ -545,12 +545,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->reboot(123);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_power_cycle($adapter)
     {
@@ -559,12 +559,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->powerCycle(123);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_shutdown($adapter)
     {
@@ -573,12 +573,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->shutdown(123);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_power_off($adapter)
     {
@@ -587,12 +587,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->powerOff(123);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_power_on($adapter)
     {
@@ -601,12 +601,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->powerOn(123);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_password_reset($adapter)
     {
@@ -615,12 +615,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->passwordReset(123);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_resize($adapter)
     {
@@ -632,12 +632,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->resize(123, '1gb', true);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_restore($adapter)
     {
@@ -649,12 +649,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->restore(123, 456);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_rebuild($adapter)
     {
@@ -666,12 +666,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->rebuild(123, 'my-slug');
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_changing_kernel($adapter)
     {
@@ -683,12 +683,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->changeKernel(123, 789);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_ipv6_enabled($adapter)
     {
@@ -697,12 +697,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->enableIpv6(123);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_backups_are_enabled($adapter)
     {
@@ -711,12 +711,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->enableBackups(123);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_backups_are_disabled($adapter)
     {
@@ -725,12 +725,12 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->disableBackups(123);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_the_action_entity_after_enabling_private_network($adapter)
     {
@@ -739,7 +739,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->enablePrivateNetworking(123);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
     }
 }

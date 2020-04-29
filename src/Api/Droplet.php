@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TerraFormV2 library.
+ * This file is part of the TerraformV2 library.
  *
  * (c) Antoine Corcy <contact@sbin.dk>
  *
@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace TerraFormV2\Api;
+namespace TerraformV2\Api;
 
-use TerraFormV2\Entity\Action as ActionEntity;
-use TerraFormV2\Entity\Droplet as DropletEntity;
-use TerraFormV2\Entity\Image as ImageEntity;
-use TerraFormV2\Entity\Kernel as KernelEntity;
-use TerraFormV2\Entity\Upgrade as UpgradeEntity;
-use TerraFormV2\Exception\HttpException;
+use TerraformV2\Entity\Action as ActionEntity;
+use TerraformV2\Entity\Droplet as DropletEntity;
+use TerraformV2\Entity\Image as ImageEntity;
+use TerraformV2\Entity\Kernel as KernelEntity;
+use TerraformV2\Entity\Upgrade as UpgradeEntity;
+use TerraformV2\Exception\HttpException;
 
 /**
  * @author Yassir Hannoun <yassir.hannoun@gmail.com>

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TerraFormV2 library.
+ * This file is part of the TerraformV2 library.
  *
  * (c) Antoine Corcy <contact@sbin.dk>
  *
@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace TerraFormV2\Api;
+namespace TerraformV2\Api;
 
-use TerraFormV2\Entity\Domain as DomainEntity;
-use TerraFormV2\Exception\HttpException;
+use TerraformV2\Entity\Domain as DomainEntity;
+use TerraformV2\Exception\HttpException;
 
 /**
  * @author Yassir Hannoun <yassir.hannoun@gmail.com>

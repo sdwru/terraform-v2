@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
 class SnapshotSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function let($adapter)
     {
@@ -14,11 +14,11 @@ class SnapshotSpec extends \PhpSpec\ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\Snapshot');
+        $this->shouldHaveType('TerraformV2\Api\Snapshot');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_empty_array($adapter)
     {
@@ -30,7 +30,7 @@ class SnapshotSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_snapshot_entity($adapter)
     {
@@ -79,17 +79,17 @@ class SnapshotSpec extends \PhpSpec\ObjectBehavior
         $snapshots->shouldHaveCount(2);
         foreach ($snapshots as $snapshot) {
             /**
-             * @var \TerraFormV2\Entity\Snapshot|\PhpSpec\Wrapper\Subject $snapshot
+             * @var \TerraformV2\Entity\Snapshot|\PhpSpec\Wrapper\Subject $snapshot
              */
-            $snapshot->shouldReturnAnInstanceOf('TerraFormV2\Entity\Snapshot');
+            $snapshot->shouldReturnAnInstanceOf('TerraformV2\Entity\Snapshot');
         }
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe(2);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_snapshot_entity_by_type($adapter)
     {
@@ -127,17 +127,17 @@ class SnapshotSpec extends \PhpSpec\ObjectBehavior
         $snapshots->shouldHaveCount(1);
         foreach ($snapshots as $snapshot) {
             /**
-             * @var \TerraFormV2\Entity\Snapshot|\PhpSpec\Wrapper\Subject $snapshot
+             * @var \TerraformV2\Entity\Snapshot|\PhpSpec\Wrapper\Subject $snapshot
              */
-            $snapshot->shouldReturnAnInstanceOf('TerraFormV2\Entity\Snapshot');
+            $snapshot->shouldReturnAnInstanceOf('TerraformV2\Entity\Snapshot');
         }
         $meta = $this->getMeta();
-        $meta->shouldHaveType('TerraFormV2\Entity\Meta');
+        $meta->shouldHaveType('TerraformV2\Entity\Meta');
         $meta->total->shouldBe(1);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_snapshot_entity_by_id($adapter)
     {
@@ -160,13 +160,13 @@ class SnapshotSpec extends \PhpSpec\ObjectBehavior
                 }');
 
         $snapshot = $this->getById('4f60fc64-85d1-11e6-a004-000f53315871');
-        $snapshot->shouldReturnAnInstanceOf('TerraFormV2\Entity\Snapshot');
+        $snapshot->shouldReturnAnInstanceOf('TerraformV2\Entity\Snapshot');
         $snapshot->id->shouldBe('4f60fc64-85d1-11e6-a004-000f53315871');
         $snapshot->name->shouldBe('snapshot1-volume');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_deletes_the_snapshot_and_returns_nothing($adapter)
     {

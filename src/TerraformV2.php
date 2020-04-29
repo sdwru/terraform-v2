@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TerraFormV2 library.
+ * This file is part of the TerraformV2 library.
  *
  * (c) Antoine Corcy <contact@sbin.dk>
  *
@@ -9,30 +9,30 @@
  * file that was distributed with this source code.
  */
 
-namespace TerraFormV2;
+namespace TerraformV2;
 
-use TerraFormV2\Adapter\AdapterInterface;
-use TerraFormV2\Api\Account;
-use TerraFormV2\Api\Action;
-use TerraFormV2\Api\Certificate;
-use TerraFormV2\Api\Domain;
-use TerraFormV2\Api\DomainRecord;
-use TerraFormV2\Api\Droplet;
-use TerraFormV2\Api\FloatingIp;
-use TerraFormV2\Api\Image;
-use TerraFormV2\Api\Key;
-use TerraFormV2\Api\LoadBalancer;
-use TerraFormV2\Api\RateLimit;
-use TerraFormV2\Api\Region;
-use TerraFormV2\Api\Size;
-use TerraFormV2\Api\Snapshot;
-use TerraFormV2\Api\Volume;
+use TerraformV2\Adapter\AdapterInterface;
+use TerraformV2\Api\Account;
+use TerraformV2\Api\Action;
+use TerraformV2\Api\Certificate;
+use TerraformV2\Api\Domain;
+use TerraformV2\Api\DomainRecord;
+use TerraformV2\Api\Droplet;
+use TerraformV2\Api\FloatingIp;
+use TerraformV2\Api\Image;
+use TerraformV2\Api\Key;
+use TerraformV2\Api\LoadBalancer;
+use TerraformV2\Api\RateLimit;
+use TerraformV2\Api\Region;
+use TerraformV2\Api\Size;
+use TerraformV2\Api\Snapshot;
+use TerraformV2\Api\Volume;
 
 /**
  * @author Antoine Corcy <contact@sbin.dk>
  * @author Graham Campbell <graham@alt-three.com>
  */
-class TerraFormV2
+class TerraformV2
 {
     /**
      * @var AdapterInterface

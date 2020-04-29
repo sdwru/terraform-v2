@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
-use TerraFormV2\Exception\HttpException;
+use TerraformV2\Exception\HttpException;
 
 class DomainSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function let($adapter)
     {
@@ -16,11 +16,11 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\Domain');
+        $this->shouldHaveType('TerraformV2\Api\Domain');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_an_empty_array($adapter)
     {
@@ -32,7 +32,7 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_an_array_of_domain_entity($adapter)
     {
@@ -46,17 +46,17 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
         $domains->shouldHaveCount($total);
         foreach ($domains as $domain) {
             /**
-             * @var \TerraFormV2\Entity\Domain|\PhpSpec\Wrapper\Subject $domain
+             * @var \TerraformV2\Entity\Domain|\PhpSpec\Wrapper\Subject $domain
              */
-            $domain->shouldReturnAnInstanceOf('TerraFormV2\Entity\Domain');
+            $domain->shouldReturnAnInstanceOf('TerraformV2\Entity\Domain');
         }
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe(3);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_a_domain_entity_get_by_its_name($adapter)
     {
@@ -72,11 +72,11 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
                 }
             ');
 
-        $this->getByName('foo.com')->shouldReturnAnInstanceOf('TerraFormV2\Entity\Domain');
+        $this->getByName('foo.com')->shouldReturnAnInstanceOf('TerraformV2\Entity\Domain');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_throws_an_http_exception_if_requested_domain_does_not_exist($adapter)
     {
@@ -88,7 +88,7 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_returns_the_created_domain_entity($adapter)
     {
@@ -104,11 +104,11 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
                 }
             ');
 
-        $this->create('bar.dk', '127.0.0.1')->shouldReturnAnInstanceOf('TerraFormV2\Entity\Domain');
+        $this->create('bar.dk', '127.0.0.1')->shouldReturnAnInstanceOf('TerraformV2\Entity\Domain');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_throws_an_http_exception_if_ip_address_is_invalid($adapter)
     {
@@ -120,7 +120,7 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_deletes_the_domain_and_returns_nothing($adapter)
     {
@@ -132,7 +132,7 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function it_throws_an_http_exception_when_trying_to_delete_an_inexisting_domain($adapter)
     {

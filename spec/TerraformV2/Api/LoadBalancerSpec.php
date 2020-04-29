@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
-use TerraFormV2\Exception\HttpException;
+use TerraformV2\Exception\HttpException;
 
 class LoadBalancerSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     function let($adapter)
     {
@@ -16,11 +16,11 @@ class LoadBalancerSpec extends \PhpSpec\ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\LoadBalancer');
+        $this->shouldHaveType('TerraformV2\Api\LoadBalancer');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_if_load_balancer_does_not_exist($adapter)
     {
@@ -32,7 +32,7 @@ class LoadBalancerSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_load_balancer_entity($adapter)
     {
@@ -55,18 +55,18 @@ class LoadBalancerSpec extends \PhpSpec\ObjectBehavior
         $loadBalancers->shouldHaveCount($total);
         foreach ($loadBalancers as $loadBalancer) {
             /**
-             * @var \TerraFormV2\Entity\LoadBalancer|\PhpSpec\Wrapper\Subject $loadBalancer
+             * @var \TerraformV2\Entity\LoadBalancer|\PhpSpec\Wrapper\Subject $loadBalancer
              */
-            $loadBalancer->shouldReturnAnInstanceOf('TerraFormV2\Entity\LoadBalancer');
+            $loadBalancer->shouldReturnAnInstanceOf('TerraformV2\Entity\LoadBalancer');
         }
 
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_a_load_balancer_entity_by_its_id($adapter)
     {
@@ -74,11 +74,11 @@ class LoadBalancerSpec extends \PhpSpec\ObjectBehavior
                 ->willReturn(json_encode($this->getLoadBalancerSpecification()));
 
         $loadBalancer = $this->getById('1234');
-        $loadBalancer->shouldBeAnInstanceOf('TerraFormV2\Entity\LoadBalancer');
+        $loadBalancer->shouldBeAnInstanceOf('TerraformV2\Entity\LoadBalancer');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_a_created_load_balancer($adapter)
     {
@@ -101,11 +101,11 @@ class LoadBalancerSpec extends \PhpSpec\ObjectBehavior
             ->willReturn(json_encode($loadBalancerSpecification));
 
         $loadBalancer = $this->create('example-lb-01', 'nyc1', $lbs['forwarding_rules']);
-        $loadBalancer->shouldBeAnInstanceOf('TerraFormV2\Entity\LoadBalancer');
+        $loadBalancer->shouldBeAnInstanceOf('TerraformV2\Entity\LoadBalancer');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_updates_an_existing_load_balancer($adapter)
     {
@@ -127,7 +127,7 @@ class LoadBalancerSpec extends \PhpSpec\ObjectBehavior
             ->willReturn(json_encode($loadBalancerSpecification));
 
         $loadBalancer = $this->update($lbs['id'], $data);
-        $loadBalancer->shouldBeAnInstanceOf('TerraFormV2\Entity\LoadBalancer');
+        $loadBalancer->shouldBeAnInstanceOf('TerraformV2\Entity\LoadBalancer');
     }
 
     /**

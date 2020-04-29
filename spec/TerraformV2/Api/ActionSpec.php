@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\TerraFormV2\Api;
+namespace spec\TerraformV2\Api;
 
-use TerraFormV2\Exception\HttpException;
+use TerraformV2\Exception\HttpException;
 
 class ActionSpec extends \PhpSpec\ObjectBehavior
 {
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function let($adapter)
     {
@@ -16,11 +16,11 @@ class ActionSpec extends \PhpSpec\ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('TerraFormV2\Api\Action');
+        $this->shouldHaveType('TerraformV2\Api\Action');
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_empty_array($adapter)
     {
@@ -32,7 +32,7 @@ class ActionSpec extends \PhpSpec\ObjectBehavior
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_array_of_action_entity($adapter)
     {
@@ -106,23 +106,23 @@ class ActionSpec extends \PhpSpec\ObjectBehavior
         $actions->shouldHaveCount($total);
         foreach ($actions as $action) {
             /**
-             * @var \TerraFormV2\Entity\Action|\PhpSpec\Wrapper\Subject $action
+             * @var \TerraformV2\Entity\Action|\PhpSpec\Wrapper\Subject $action
              */
-            $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
+            $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
 
             /**
-             * @var \TerraFormV2\Entity\Region|\PhpSpec\Wrapper\Subject $actionRegion
+             * @var \TerraformV2\Entity\Region|\PhpSpec\Wrapper\Subject $actionRegion
              */
             $actionRegion = $action->region;
-            $actionRegion->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+            $actionRegion->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
         }
         $meta = $this->getMeta();
-        $meta->shouldBeAnInstanceOf('TerraFormV2\Entity\Meta');
+        $meta->shouldBeAnInstanceOf('TerraformV2\Entity\Meta');
         $meta->total->shouldBe($total);
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_returns_an_action_entity_get_by_its_id($adapter)
     {
@@ -151,15 +151,15 @@ class ActionSpec extends \PhpSpec\ObjectBehavior
             ');
 
         $action = $this->getById(123);
-        $action->shouldReturnAnInstanceOf('TerraFormV2\Entity\Action');
-        $action->region->shouldReturnAnInstanceOf('TerraFormV2\Entity\Region');
+        $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
+        $action->region->shouldReturnAnInstanceOf('TerraformV2\Entity\Region');
         $action->regionSlug->shouldReturn('nyc2');
 
         $this->getMeta()->shouldBeNull();
     }
 
     /**
-     * @param \TerraFormV2\Adapter\AdapterInterface $adapter
+     * @param \TerraformV2\Adapter\AdapterInterface $adapter
      */
     public function it_throws_an_http_exception_if_requested_action_does_not_exist($adapter)
     {
