@@ -1,29 +1,21 @@
 {
-    "name"       : "toin0u/terraform-v2",
+    "name"       : "sdwru/terraform-v2",
     "type"       : "library",
-    "description": "DigitalOcean API v2 PHP 5.4+ library",
-    "keywords"   : ["DigitalOcean", "API", "Cloud Hosting", "SSD", "VPS"],
-    "homepage"   : "https://github.com/toin0u/TerraformV2",
+    "description": "Terraform API v2 PHP 5.4+ library",
+    "keywords"   : ["Terraform", "API", "Infrastructure", "code"],
+    "homepage"   : "https://github.com/sdwru/terraform-v2",
     "license"    : "MIT",
 
     "authors": [
         {
-            "name"    : "Antoine Corcy",
-            "email"   : "contact@sbin.dk",
-            "homepage": "http://sbin.dk",
-            "role"    : "Developer"
-        },
-        {
-            "name"    : "Yassir Hannnoun",
-            "email"   : "yassir.hannoun@gmail.com",
-            "homepage": "https://yassirh.com",
+            "homepage": "http://github.com/sdwur",
             "role"    : "Developer"
         }
     ],
 
     "support": {
-        "issues": "https://github.com/toin0u/TerraformV2/issues",
-        "source": "https://github.com/toin0u/TerraformV2"
+        "issues": "https://github.com/sdwru/terraform-v2/issues",
+        "source": "https://github.com/sdwru/terraform-v2"
     },
 
     "require": {
@@ -32,13 +24,11 @@
     },
 
     "require-dev": {
-        "kriswallsmith/buzz": "^0.16",
-        "guzzlehttp/guzzle": "^5.3|^6.3",
+        "guzzlehttp/guzzle": "^6.3",
         "phpspec/phpspec": "^2.5"
     },
 
     "suggest": {
-        "kriswallsmith/buzz": "To use BuzzAdapter, require kriswallsmith/buzz:^0.16.",
         "guzzlehttp/guzzle" : "To use GuzzleHttpAdapter, require guzzlehttp/guzzle:^5.3|^6.3."
     },
 
