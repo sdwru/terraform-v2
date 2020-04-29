@@ -24,7 +24,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
      */
     public function it_returns_an_empty_array($adapter)
     {
-        $adapter->get('https://api.digitalocean.com/v2/floating_ips?per_page=200')->willReturn('{"floating_ips": []}');
+        $adapter->get('https://api.terraform.com/v2/floating_ips?per_page=200')->willReturn('{"floating_ips": []}');
 
         $ips = $this->getAll();
         $ips->shouldBeArray();
@@ -38,7 +38,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     {
         $total = 3;
         $adapter
-            ->get('https://api.digitalocean.com/v2/floating_ips?per_page=200')
+            ->get('https://api.terraform.com/v2/floating_ips?per_page=200')
             ->willReturn(sprintf('{"floating_ips": [{},{},{}], "meta": {"total": %d}}', $total));
 
         $ips = $this->getAll();
@@ -61,7 +61,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_a_floating_ip_entity_get_by_its_id($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/floating_ips/45.55.96.47')
+            ->get('https://api.terraform.com/v2/floating_ips/45.55.96.47')
             ->willReturn('
                 {
                     "floating_ip": {
@@ -107,7 +107,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     public function it_throws_an_http_exception_if_requested_floating_id_does_not_exist($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/floating_ips/1234567')
+            ->get('https://api.terraform.com/v2/floating_ips/1234567')
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('getById', [1234567]);
@@ -119,7 +119,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_created_floating_id_entity_assigned_to_droplet($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/floating_ips', ['droplet_id' => 123456])
+            ->post('https://api.terraform.com/v2/floating_ips', ['droplet_id' => 123456])
             ->willReturn('{"floating_ip": {}}');
 
         $this->createAssigned(123456)->shouldReturnAnInstanceOf('TerraformV2\Entity\FloatingIp');
@@ -131,7 +131,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_created_floating_id_entity_reserved_by_region($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/floating_ips', ['region' => 'nyc3'])
+            ->post('https://api.terraform.com/v2/floating_ips', ['region' => 'nyc3'])
             ->willReturn('{"floating_ip": {}}');
 
         $this->createReserved('nyc3')->shouldReturnAnInstanceOf('TerraformV2\Entity\FloatingIp');
@@ -143,7 +143,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     public function it_deletes_the_floating_ip_and_returns_nothing($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/floating_ips/123')
+            ->delete('https://api.terraform.com/v2/floating_ips/123')
             ->shouldBeCalled();
 
         $this->delete(123);
@@ -155,7 +155,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     public function it_throws_an_http_exception_when_trying_to_delete_inexisting_floating_ip($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/floating_ips/123')
+            ->delete('https://api.terraform.com/v2/floating_ips/123')
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('delete', [123]);
@@ -168,7 +168,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     {
         $total = 3;
         $adapter
-            ->get('https://api.digitalocean.com/v2/floating_ips/123/actions?per_page=200')
+            ->get('https://api.terraform.com/v2/floating_ips/123/actions?per_page=200')
             ->willReturn(sprintf('{"actions": [{"region": {}}, {"region": {}}, {"region": {}}], "meta": {"total": %d}}', $total));
 
         $actions = $this->getActions(123);
@@ -191,7 +191,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
      */
     public function it_returns_the_given_floating_ips_action_get_by_its_id($adapter)
     {
-        $adapter->get('https://api.digitalocean.com/v2/floating_ips/123/actions/456')->willReturn('{"action": {"region": {}}}');
+        $adapter->get('https://api.terraform.com/v2/floating_ips/123/actions/456')->willReturn('{"action": {"region": {}}}');
 
         $action = $this->getActionById(123, 456);
         $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
@@ -204,7 +204,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_action_entity_after_assign($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/floating_ips/123/actions', ['type' => 'assign', 'droplet_id' => 456])
+            ->post('https://api.terraform.com/v2/floating_ips/123/actions', ['type' => 'assign', 'droplet_id' => 456])
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->assign(123, 456);
@@ -218,7 +218,7 @@ class FloatingIpSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_action_entity_after_unassign($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/floating_ips/123/actions', ['type' => 'unassign'])
+            ->post('https://api.terraform.com/v2/floating_ips/123/actions', ['type' => 'unassign'])
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->unassign(123);

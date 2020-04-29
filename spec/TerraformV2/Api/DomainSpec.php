@@ -24,7 +24,7 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
      */
     function it_returns_an_empty_array($adapter)
     {
-        $adapter->get('https://api.digitalocean.com/v2/domains?per_page=200&page=1')->willReturn('{"domains": []}');
+        $adapter->get('https://api.terraform.com/v2/domains?per_page=200&page=1')->willReturn('{"domains": []}');
 
         $domains = $this->getAll();
         $domains->shouldBeArray();
@@ -38,7 +38,7 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
     {
         $total = 3;
         $adapter
-            ->get('https://api.digitalocean.com/v2/domains?per_page=200&page=1')
+            ->get('https://api.terraform.com/v2/domains?per_page=200&page=1')
             ->willReturn(sprintf('{"domains": [{},{},{}], "meta": {"total": %d}}', $total));
 
         $domains = $this->getAll();
@@ -61,7 +61,7 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
     function it_returns_a_domain_entity_get_by_its_name($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/domains/foo.com')
+            ->get('https://api.terraform.com/v2/domains/foo.com')
             ->willReturn('
                 {
                     "domain": {
@@ -81,7 +81,7 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
     function it_throws_an_http_exception_if_requested_domain_does_not_exist($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/domains/foo.bar')
+            ->get('https://api.terraform.com/v2/domains/foo.bar')
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('getByName', ['foo.bar']);
@@ -93,7 +93,7 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
     function it_returns_the_created_domain_entity($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/domains', ['name' => 'bar.dk', 'ip_address' => '127.0.0.1'])
+            ->post('https://api.terraform.com/v2/domains', ['name' => 'bar.dk', 'ip_address' => '127.0.0.1'])
             ->willReturn('
                 {
                     "domain": {
@@ -113,7 +113,7 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
     function it_throws_an_http_exception_if_ip_address_is_invalid($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/domains', ['name' => 'boo.dk', 'ip_address' => '123456'])
+            ->post('https://api.terraform.com/v2/domains', ['name' => 'boo.dk', 'ip_address' => '123456'])
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('create', ['boo.dk', '123456']);
@@ -125,7 +125,7 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
     function it_deletes_the_domain_and_returns_nothing($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/domains/qmx.fr')
+            ->delete('https://api.terraform.com/v2/domains/qmx.fr')
             ->shouldBeCalled();
 
         $this->delete('qmx.fr');
@@ -137,7 +137,7 @@ class DomainSpec extends \PhpSpec\ObjectBehavior
     function it_throws_an_http_exception_when_trying_to_delete_an_inexisting_domain($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/domains/qmx.bar')
+            ->delete('https://api.terraform.com/v2/domains/qmx.bar')
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('delete', ['qmx.bar']);

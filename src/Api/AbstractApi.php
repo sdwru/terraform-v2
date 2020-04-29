@@ -23,7 +23,7 @@ abstract class AbstractApi
     /**
      * @var string
      */
-    const ENDPOINT = 'https://api.digitalocean.com/v2';
+    const ENDPOINT = 'https://api.terraform.com/v2';
 
     /**
      * @var AdapterInterface

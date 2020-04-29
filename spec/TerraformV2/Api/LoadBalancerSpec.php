@@ -25,7 +25,7 @@ class LoadBalancerSpec extends \PhpSpec\ObjectBehavior
     public function it_throws_an_http_exception_if_load_balancer_does_not_exist($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/load_balancers/1234')
+            ->get('https://api.terraform.com/v2/load_balancers/1234')
             ->willThrow(new HttpException('Load Balancer not found'));
 
         $this->shouldThrow(new HttpException('Load Balancer not found'))->during('getById', [1234]);
@@ -37,7 +37,7 @@ class LoadBalancerSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_an_array_of_load_balancer_entity($adapter)
     {
         $total = 3;
-        $adapter->get('https://api.digitalocean.com/v2/load_balancers')
+        $adapter->get('https://api.terraform.com/v2/load_balancers')
                 ->willReturn(json_encode([
                     'load_balancers' => [
                         [],
@@ -70,7 +70,7 @@ class LoadBalancerSpec extends \PhpSpec\ObjectBehavior
      */
     public function it_returns_a_load_balancer_entity_by_its_id($adapter)
     {
-        $adapter->get('https://api.digitalocean.com/v2/load_balancers/1234')
+        $adapter->get('https://api.terraform.com/v2/load_balancers/1234')
                 ->willReturn(json_encode($this->getLoadBalancerSpecification()));
 
         $loadBalancer = $this->getById('1234');
@@ -97,7 +97,7 @@ class LoadBalancerSpec extends \PhpSpec\ObjectBehavior
         ];
 
         $adapter
-            ->post('https://api.digitalocean.com/v2/load_balancers', $data)
+            ->post('https://api.terraform.com/v2/load_balancers', $data)
             ->willReturn(json_encode($loadBalancerSpecification));
 
         $loadBalancer = $this->create('example-lb-01', 'nyc1', $lbs['forwarding_rules']);
@@ -123,7 +123,7 @@ class LoadBalancerSpec extends \PhpSpec\ObjectBehavior
         ];
 
         $adapter
-            ->put('https://api.digitalocean.com/v2/load_balancers/'.$lbs['id'], $data)
+            ->put('https://api.terraform.com/v2/load_balancers/'.$lbs['id'], $data)
             ->willReturn(json_encode($loadBalancerSpecification));
 
         $loadBalancer = $this->update($lbs['id'], $data);

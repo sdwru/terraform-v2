@@ -24,7 +24,7 @@ class ActionSpec extends \PhpSpec\ObjectBehavior
      */
     public function it_returns_an_empty_array($adapter)
     {
-        $adapter->get('https://api.digitalocean.com/v2/actions?per_page=200')->willReturn('{"actions": []}');
+        $adapter->get('https://api.terraform.com/v2/actions?per_page=200')->willReturn('{"actions": []}');
 
         $actions = $this->getAll();
         $actions->shouldBeArray();
@@ -38,7 +38,7 @@ class ActionSpec extends \PhpSpec\ObjectBehavior
     {
         $total = 3;
         $adapter
-            ->get('https://api.digitalocean.com/v2/actions?per_page=200')
+            ->get('https://api.terraform.com/v2/actions?per_page=200')
             ->willReturn(sprintf('
                 {
                     "actions": [
@@ -127,7 +127,7 @@ class ActionSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_an_action_entity_get_by_its_id($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/actions/123')
+            ->get('https://api.terraform.com/v2/actions/123')
             ->willReturn('
                 {
                     "action": {
@@ -164,7 +164,7 @@ class ActionSpec extends \PhpSpec\ObjectBehavior
     public function it_throws_an_http_exception_if_requested_action_does_not_exist($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/actions/1234567')
+            ->get('https://api.terraform.com/v2/actions/1234567')
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('getById', [1234567]);

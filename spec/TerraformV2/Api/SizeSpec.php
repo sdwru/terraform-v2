@@ -23,7 +23,7 @@ class SizeSpec extends \PhpSpec\ObjectBehavior
     function it_returns_an_array_of_size_entity($adapter)
     {
         $total = 3;
-        $adapter->get('https://api.digitalocean.com/v2/sizes?per_page=200')
+        $adapter->get('https://api.terraform.com/v2/sizes?per_page=200')
             ->willReturn(sprintf('{"sizes": [{},{},{}], "meta": {"total": %d}}', $total));
 
         $sizes = $this->getAll();

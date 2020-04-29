@@ -25,7 +25,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
      */
     public function it_returns_an_empty_array($adapter)
     {
-        $adapter->get('https://api.digitalocean.com/v2/droplets?per_page=200&page=1')->willReturn('{"droplets": []}');
+        $adapter->get('https://api.terraform.com/v2/droplets?per_page=200&page=1')->willReturn('{"droplets": []}');
 
         $droplets = $this->getAll();
         $droplets->shouldBeArray();
@@ -39,7 +39,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $total = 3;
         $adapter
-            ->get('https://api.digitalocean.com/v2/droplets?per_page=200&page=1')
+            ->get('https://api.terraform.com/v2/droplets?per_page=200&page=1')
             ->willReturn(sprintf('{"droplets": [{},{},{}], "meta": {"total": %d}}', $total));
 
         $droplets = $this->getAll();
@@ -62,7 +62,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_an_array_of_droplet_neighbors_for_a_given_droplet_id($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/droplets/123/neighbors')
+            ->get('https://api.terraform.com/v2/droplets/123/neighbors')
             ->willReturn('{"droplets" : [{},{},{}]}');
 
         $droplets = $this->getNeighborsById(123);
@@ -82,7 +82,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_an_array_of_upgrade_entity($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/droplet_upgrades')
+            ->get('https://api.terraform.com/v2/droplet_upgrades')
             ->willReturn('[{}, {}, {}]');
 
         $upgrades = $this->getUpgrades();
@@ -102,7 +102,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_an_array_of_droplet_that_are_running_on_the_same_physical_hardware($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/reports/droplet_neighbors')
+            ->get('https://api.terraform.com/v2/reports/droplet_neighbors')
             ->willReturn('{"neighbors" : [{},{},{}]}');
 
         $neighbors = $this->getAllNeighbors();
@@ -122,7 +122,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_a_droplet_entity_get_by_its_id($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/droplets/14')
+            ->get('https://api.terraform.com/v2/droplets/14')
             ->willReturn('
                 {
                     "droplet": {
@@ -238,7 +238,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_a_droplet_entity_even_if_backup_is_disabled($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/droplets/1234')
+            ->get('https://api.terraform.com/v2/droplets/1234')
             ->willReturn('
                 {
                     "droplet": {
@@ -310,7 +310,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_throws_an_http_exception_if_requested_droplet_does_not_exist($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/droplets/1234567')
+            ->get('https://api.terraform.com/v2/droplets/1234567')
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('getById', [1234567]);
@@ -323,7 +323,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/droplets',
+                'https://api.terraform.com/v2/droplets',
                 ['name' => 'foo', 'region' => 'nyc1', 'size' => '512mb', 'image' => 123456, 'backups' => 'false', 'ipv6' => 'false', 'private_networking' => 'false', 'monitoring' => 'true', 'volumes' => ['123', '456'], 'tags' => ['foo', 'bar']]
             )
             ->willReturn('{"droplet": {}}');
@@ -338,7 +338,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/droplets',
+                'https://api.terraform.com/v2/droplets',
                 ['name' => 'bar', 'region' => 'nyc2', 'size' => '512mb', 'image' => 'ubuntu', 'backups' => 'true', 'ipv6' => 'true', 'private_networking' => 'true', 'ssh_keys' => ['123', '456', '789'], 'monitoring' => 'true', 'volumes' => ['123', '456'], 'tags' => ['foo', 'bar']]
             )
             ->willReturn('{"droplet":{}}');
@@ -355,7 +355,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/droplets',
+                'https://api.terraform.com/v2/droplets',
                 [
                     'names' => ['foo', 'bar'],
                     'region' => 'nyc1',
@@ -395,7 +395,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/droplets',
+                'https://api.terraform.com/v2/droplets',
                 ['name' => 'foo', 'region' => 'nyc1', 'size' => '512mb', 'image' => 123456, 'backups' => 'false', 'ipv6' => 'false', 'private_networking' => 'false', 'monitoring' => 'true']
             )
             ->willThrow(new HttpException('Request not processed.'));
@@ -409,7 +409,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_deletes_the_droplet_and_returns_nothing($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/droplets/123')
+            ->delete('https://api.terraform.com/v2/droplets/123')
             ->shouldBeCalled();
 
         $this->delete(123);
@@ -421,7 +421,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_throws_an_http_exception_when_trying_to_delete_inexisting_droplet($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/droplets/123')
+            ->delete('https://api.terraform.com/v2/droplets/123')
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('delete', [123]);
@@ -434,7 +434,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $total = 3;
         $adapter
-            ->get('https://api.digitalocean.com/v2/droplets/123/kernels')
+            ->get('https://api.terraform.com/v2/droplets/123/kernels')
             ->willReturn(sprintf('{"kernels": [{},{},{}], "meta": {"total": %d}}', $total));
 
         $kernels = $this->getAvailableKernels(123);
@@ -458,7 +458,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $total = 3;
         $adapter
-            ->get('https://api.digitalocean.com/v2/droplets/123/snapshots?per_page=200')
+            ->get('https://api.terraform.com/v2/droplets/123/snapshots?per_page=200')
             ->willReturn(sprintf('{"snapshots": [{},{},{}], "meta": {"total": %d}}', $total));
 
         $snapshots = $this->getSnapshots(123);
@@ -482,7 +482,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $total = 3;
         $adapter
-            ->get('https://api.digitalocean.com/v2/droplets/123/backups?per_page=200')
+            ->get('https://api.terraform.com/v2/droplets/123/backups?per_page=200')
             ->willReturn(sprintf('{"backups": [{},{},{}], "meta": {"total": %d}}', $total));
         $backups = $this->getBackups(123);
         $backups->shouldBeArray();
@@ -505,7 +505,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $total = 3;
         $adapter
-            ->get('https://api.digitalocean.com/v2/droplets/123/actions?per_page=200')
+            ->get('https://api.terraform.com/v2/droplets/123/actions?per_page=200')
             ->willReturn(sprintf('{"actions": [{"region": {}}, {"region": {}}, {"region": {}}], "meta": {"total": %d}}', $total));
 
         $actions = $this->getActions(123);
@@ -528,7 +528,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
      */
     public function it_returns_the_given_droplets_action_get_by_its_id($adapter)
     {
-        $adapter->get('https://api.digitalocean.com/v2/droplets/123/actions/456')->willReturn('{"action": {"region": {}}}');
+        $adapter->get('https://api.terraform.com/v2/droplets/123/actions/456')->willReturn('{"action": {"region": {}}}');
 
         $action = $this->getActionById(123, 456);
         $action->shouldReturnAnInstanceOf('TerraformV2\Entity\Action');
@@ -541,7 +541,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_action_entity_after_reboot($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/droplets/123/actions', ['type' => 'reboot'])
+            ->post('https://api.terraform.com/v2/droplets/123/actions', ['type' => 'reboot'])
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->reboot(123);
@@ -555,7 +555,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_action_entity_after_power_cycle($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/droplets/123/actions', ['type' => 'power_cycle'])
+            ->post('https://api.terraform.com/v2/droplets/123/actions', ['type' => 'power_cycle'])
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->powerCycle(123);
@@ -569,7 +569,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_action_entity_after_shutdown($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/droplets/123/actions', ['type' => 'shutdown'])
+            ->post('https://api.terraform.com/v2/droplets/123/actions', ['type' => 'shutdown'])
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->shutdown(123);
@@ -583,7 +583,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_action_entity_after_power_off($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/droplets/123/actions', ['type' => 'power_off'])
+            ->post('https://api.terraform.com/v2/droplets/123/actions', ['type' => 'power_off'])
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->powerOff(123);
@@ -597,7 +597,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_action_entity_after_power_on($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/droplets/123/actions', ['type' => 'power_on'])
+            ->post('https://api.terraform.com/v2/droplets/123/actions', ['type' => 'power_on'])
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->powerOn(123);
@@ -611,7 +611,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_action_entity_after_password_reset($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/droplets/123/actions', ['type' => 'password_reset'])
+            ->post('https://api.terraform.com/v2/droplets/123/actions', ['type' => 'password_reset'])
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->passwordReset(123);
@@ -626,7 +626,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/droplets/123/actions',
+                'https://api.terraform.com/v2/droplets/123/actions',
                 ['type' => 'resize', 'size' => '1gb', 'disk' => 'true']
             )
             ->willReturn('{"action": {"region": {}}}');
@@ -643,7 +643,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/droplets/123/actions',
+                'https://api.terraform.com/v2/droplets/123/actions',
                 ['type' => 'restore', 'image' => 456]
             )
             ->willReturn('{"action": {"region": {}}}');
@@ -660,7 +660,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/droplets/123/actions',
+                'https://api.terraform.com/v2/droplets/123/actions',
                 ['type' => 'rebuild', 'image' => 'my-slug']
             )
             ->willReturn('{"action": {"region": {}}}');
@@ -677,7 +677,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/droplets/123/actions',
+                'https://api.terraform.com/v2/droplets/123/actions',
                 ['type' => 'change_kernel', 'kernel' => 789]
             )
             ->willReturn('{"action": {"region": {}}}');
@@ -693,7 +693,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_action_entity_after_ipv6_enabled($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/droplets/123/actions', ['type' => 'enable_ipv6'])
+            ->post('https://api.terraform.com/v2/droplets/123/actions', ['type' => 'enable_ipv6'])
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->enableIpv6(123);
@@ -707,7 +707,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_action_entity_after_backups_are_enabled($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/droplets/123/actions', ['type' => 'enable_backups'])
+            ->post('https://api.terraform.com/v2/droplets/123/actions', ['type' => 'enable_backups'])
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->enableBackups(123);
@@ -721,7 +721,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_action_entity_after_backups_are_disabled($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/droplets/123/actions', ['type' => 'disable_backups'])
+            ->post('https://api.terraform.com/v2/droplets/123/actions', ['type' => 'disable_backups'])
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->disableBackups(123);
@@ -735,7 +735,7 @@ class DropletSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_the_action_entity_after_enabling_private_network($adapter)
     {
         $adapter
-            ->post('https://api.digitalocean.com/v2/droplets/123/actions', ['type' => 'enable_private_networking'])
+            ->post('https://api.terraform.com/v2/droplets/123/actions', ['type' => 'enable_private_networking'])
             ->willReturn('{"action": {"region": {}}}');
 
         $action = $this->enablePrivateNetworking(123);

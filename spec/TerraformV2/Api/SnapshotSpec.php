@@ -22,7 +22,7 @@ class SnapshotSpec extends \PhpSpec\ObjectBehavior
      */
     public function it_returns_an_empty_array($adapter)
     {
-        $adapter->get('https://api.digitalocean.com/v2/snapshots?per_page=200')->willReturn('{"snapshots": []}');
+        $adapter->get('https://api.terraform.com/v2/snapshots?per_page=200')->willReturn('{"snapshots": []}');
 
         $snapshots = $this->getAll();
         $snapshots->shouldBeArray();
@@ -35,7 +35,7 @@ class SnapshotSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_an_array_of_snapshot_entity($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/snapshots?per_page=200')
+            ->get('https://api.terraform.com/v2/snapshots?per_page=200')
             ->willReturn('{
                 "snapshots": [
                     {
@@ -65,8 +65,8 @@ class SnapshotSpec extends \PhpSpec\ObjectBehavior
                 ],
                 "links": {
                     "pages": {
-                        "last": "https://api.digitalocean.com/v2/snapshots?page=1&per_page=1&resource_type=volume",
-                        "next": "https://api.digitalocean.com/v2/snapshots?page=1&per_page=1&resource_type=volume"
+                        "last": "https://api.terraform.com/v2/snapshots?page=1&per_page=1&resource_type=volume",
+                        "next": "https://api.terraform.com/v2/snapshots?page=1&per_page=1&resource_type=volume"
                     }
                 },
                 "meta": {
@@ -94,7 +94,7 @@ class SnapshotSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_an_array_of_snapshot_entity_by_type($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/snapshots?per_page=200&resource_type=volume')
+            ->get('https://api.terraform.com/v2/snapshots?per_page=200&resource_type=volume')
             ->willReturn('{
                 "snapshots": [
                     {
@@ -112,8 +112,8 @@ class SnapshotSpec extends \PhpSpec\ObjectBehavior
                 ],
                 "links": {
                     "pages": {
-                        "last": "https://api.digitalocean.com/v2/snapshots?page=1&per_page=1&resource_type=volume",
-                        "next": "https://api.digitalocean.com/v2/snapshots?page=1&per_page=1&resource_type=volume"
+                        "last": "https://api.terraform.com/v2/snapshots?page=1&per_page=1&resource_type=volume",
+                        "next": "https://api.terraform.com/v2/snapshots?page=1&per_page=1&resource_type=volume"
                     }
                 },
                 "meta": {
@@ -142,7 +142,7 @@ class SnapshotSpec extends \PhpSpec\ObjectBehavior
     public function it_returns_snapshot_entity_by_id($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/snapshots/4f60fc64-85d1-11e6-a004-000f53315871')
+            ->get('https://api.terraform.com/v2/snapshots/4f60fc64-85d1-11e6-a004-000f53315871')
             ->willReturn('{
                 "snapshot":
                     {
@@ -171,7 +171,7 @@ class SnapshotSpec extends \PhpSpec\ObjectBehavior
     public function it_deletes_the_snapshot_and_returns_nothing($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/snapshots/4f60fc64-85d1-11e6-a004-000f53315871')
+            ->delete('https://api.terraform.com/v2/snapshots/4f60fc64-85d1-11e6-a004-000f53315871')
             ->shouldBeCalled();
 
         $this->delete('4f60fc64-85d1-11e6-a004-000f53315871');

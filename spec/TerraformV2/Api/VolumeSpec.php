@@ -24,7 +24,7 @@ class VolumeSpec extends \PhpSpec\ObjectBehavior
      */
     public function it_returns_an_empty_array($adapter)
     {
-        $adapter->get('https://api.digitalocean.com/v2/volumes?per_page=200')->willReturn('{"volumes": []}');
+        $adapter->get('https://api.terraform.com/v2/volumes?per_page=200')->willReturn('{"volumes": []}');
 
         $volumes = $this->getAll();
         $volumes->shouldBeArray();
@@ -80,7 +80,7 @@ class VolumeSpec extends \PhpSpec\ObjectBehavior
         }        
 EOT;
 
-        $adapter->get('https://api.digitalocean.com/v2/volumes?per_page=200')
+        $adapter->get('https://api.terraform.com/v2/volumes?per_page=200')
             ->willReturn($response);
 
         $volumes = $this->getAll();
@@ -148,7 +148,7 @@ EOT;
         }        
 EOT;
 
-        $adapter->get('https://api.digitalocean.com/v2/volumes?per_page=200&region=nyc1')
+        $adapter->get('https://api.terraform.com/v2/volumes?per_page=200&region=nyc1')
             ->willReturn($response);
 
         $volumes = $this->getAll('nyc1');
@@ -217,7 +217,7 @@ EOT;
         }        
 EOT;
 
-        $adapter->get('https://api.digitalocean.com/v2/volumes?per_page=200&region=nyc1&name=example')
+        $adapter->get('https://api.terraform.com/v2/volumes?per_page=200&region=nyc1&name=example')
             ->willReturn($response);
 
         $volumes = $this->getByNameAndRegion('example', 'nyc1');
@@ -280,7 +280,7 @@ EOT;
             }       
 EOT;
 
-        $adapter->get('https://api.digitalocean.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1?per_page=200')
+        $adapter->get('https://api.terraform.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1?per_page=200')
             ->willReturn($response);
 
         $volume = $this->getById('506f78a4-e098-11e5-ad9f-000f53306ae1');
@@ -336,7 +336,7 @@ EOT;
 
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/volumes',
+                'https://api.terraform.com/v2/volumes',
                 ['name' => 'example', 'description' => 'Block store for examples', 'size_gigabytes' => '10', 'region' => 'nyc1']
             )
             ->willReturn($response);
@@ -396,7 +396,7 @@ EOT;
 
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/volumes',
+                'https://api.terraform.com/v2/volumes',
                 ['name' => 'example', 'description' => 'Block store for examples snapshot id', 'size_gigabytes' => '10', 'region' => 'nyc1', 'snapshot_id' => '506f78a4-e098-11e5-ad9f-000f53306ae1']
             )
             ->shouldBeCalled()->willReturn($response);
@@ -411,7 +411,7 @@ EOT;
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/volumes',
+                'https://api.terraform.com/v2/volumes',
                 ['name' => 'example', 'description' => 'Block store for examples', 'size_gigabytes' => '10', 'region' => 'nyc1']
             )->willThrow(new HttpException('Request not processed.'));
 
@@ -424,7 +424,7 @@ EOT;
     public function it_deletes_the_volume_with_id_and_returns_nothing($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1')
+            ->delete('https://api.terraform.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1')
             ->shouldBeCalled();
 
         $this->delete('506f78a4-e098-11e5-ad9f-000f53306ae1');
@@ -436,7 +436,7 @@ EOT;
     public function it_throws_an_http_exception_when_trying_to_delete_with_id_inexisting_volume($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1')
+            ->delete('https://api.terraform.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1')
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('delete', ['506f78a4-e098-11e5-ad9f-000f53306ae1']);
@@ -448,7 +448,7 @@ EOT;
     public function it_deletes_the_volume_with_region_and_drivename_and_returns_nothing($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/volumes?name=example&region=ams1')
+            ->delete('https://api.terraform.com/v2/volumes?name=example&region=ams1')
             ->shouldBeCalled();
 
         $this->deleteWithNameAndRegion('example', 'ams1');
@@ -460,7 +460,7 @@ EOT;
     public function it_throws_an_http_exception_when_trying_to_delete_with_region_and_drivename_inexisting_volume($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/volumes?name=example&region=ams1')
+            ->delete('https://api.terraform.com/v2/volumes?name=example&region=ams1')
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('deleteWithNameAndRegion', ['example', 'ams1']);
@@ -509,7 +509,7 @@ EOT;
 EOT;
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/actions',
+                'https://api.terraform.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/actions',
                 ['type' => 'attach', 'droplet_id' => 123456, 'region' => 'nyc']
             )
             ->willReturn($response);
@@ -562,7 +562,7 @@ EOT;
 EOT;
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/actions',
+                'https://api.terraform.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/actions',
                 ['type' => 'detach', 'droplet_id' => 123456, 'region' => 'nyc']
             )
             ->willReturn($response);
@@ -615,7 +615,7 @@ EOT;
 EOT;
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/actions',
+                'https://api.terraform.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/actions',
                 ['type' => 'resize', 'size_gigabytes' => 20, 'region' => 'nyc']
             )
             ->willReturn($response);
@@ -667,7 +667,7 @@ EOT;
         }
 EOT;
         $adapter
-            ->get('https://api.digitalocean.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/actions/72531856')
+            ->get('https://api.terraform.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/actions/72531856')
             ->willReturn($response);
 
         $action = $this->getActionById('506f78a4-e098-11e5-ad9f-000f53306ae1', 72531856);
@@ -727,7 +727,7 @@ EOT;
     }
 EOT;
         $adapter
-            ->get('https://api.digitalocean.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/actions?per_page=200')
+            ->get('https://api.terraform.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/actions?per_page=200')
             ->willReturn($response);
 
         $actions = $this->getActions('506f78a4-e098-11e5-ad9f-000f53306ae1');
@@ -801,7 +801,7 @@ EOT;
 EOT;
 
         $adapter
-            ->get('https://api.digitalocean.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/snapshots?per_page=200')
+            ->get('https://api.terraform.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/snapshots?per_page=200')
             ->willReturn($response);
 
         $snapshots = $this->getSnapshots('506f78a4-e098-11e5-ad9f-000f53306ae1');
@@ -840,7 +840,7 @@ EOT;
         }
 EOT;
         $adapter
-            ->post('https://api.digitalocean.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/snapshots',
+            ->post('https://api.terraform.com/v2/volumes/506f78a4-e098-11e5-ad9f-000f53306ae1/snapshots',
                 ['name' => 'snapshot1-volume']
             )
             ->willReturn($response);

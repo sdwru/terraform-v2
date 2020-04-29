@@ -5,7 +5,7 @@ I am adding things as I need them so not all API features are implemented.  It s
 #### Terraform API V2
 
 This is based on the Digital Ocean API V2
-https://github.com/toin0u/DigitalOceanV2
+https://github.com/toin0u/TerraformV2
 
 ===============
 

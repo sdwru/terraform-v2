@@ -24,7 +24,7 @@ class CertificateSpec extends \PhpSpec\ObjectBehavior
     {
         $total = 3;
         $adapter
-            ->get('https://api.digitalocean.com/v2/certificates')
+            ->get('https://api.terraform.com/v2/certificates')
             ->willReturn(json_encode([
                 'certificates' => [
                     [], [], [],
@@ -57,7 +57,7 @@ class CertificateSpec extends \PhpSpec\ObjectBehavior
     function it_returns_a_certificate_entity_by_its_id($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/certificates/123')
+            ->get('https://api.terraform.com/v2/certificates/123')
             ->willReturn(json_encode([
                 'certificate' => [
                     'id' => '123',
@@ -85,7 +85,7 @@ class CertificateSpec extends \PhpSpec\ObjectBehavior
         ];
 
         $adapter
-            ->post('https://api.digitalocean.com/v2/certificates', $data)
+            ->post('https://api.terraform.com/v2/certificates', $data)
             ->willReturn(json_encode([
                 'certificate' => [
                     'id' => '123',
@@ -107,7 +107,7 @@ class CertificateSpec extends \PhpSpec\ObjectBehavior
     function it_deletes_the_certificate_and_returns_nothing($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/certificates/123')
+            ->delete('https://api.terraform.com/v2/certificates/123')
             ->shouldBeCalled();
 
         $this->delete(123);

@@ -23,13 +23,13 @@ class AccountSpec extends \PhpSpec\ObjectBehavior
     function it_returns_user_information($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/account')
+            ->get('https://api.terraform.com/v2/account')
             ->willReturn('
                 {
                     "account": {
                         "droplet_limit": 25,
                         "floating_ip_limit": 5,
-                        "email": "sammy@digitalocean.com",
+                        "email": "sammy@terraform.com",
                         "uuid": "b6fr89dbf6d9156cace5f3c78dc9851d957381ef",
                         "email_verified": true,
                         "status": "active",

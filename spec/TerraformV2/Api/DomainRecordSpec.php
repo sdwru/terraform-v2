@@ -25,7 +25,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
      */
     function it_returns_an_empty_array($adapter)
     {
-        $adapter->get('https://api.digitalocean.com/v2/domains/foo.dk/records?per_page=200')->willReturn('{"domain_records": []}');
+        $adapter->get('https://api.terraform.com/v2/domains/foo.dk/records?per_page=200')->willReturn('{"domain_records": []}');
 
         $domainRecords = $this->getAll('foo.dk');
         $domainRecords->shouldBeArray();
@@ -39,7 +39,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     {
         $total = 3;
         $adapter
-            ->get('https://api.digitalocean.com/v2/domains/foo.dk/records?per_page=200')
+            ->get('https://api.terraform.com/v2/domains/foo.dk/records?per_page=200')
             ->willReturn(sprintf('{"domain_records": [{},{},{}], "meta": {"total": %d}}', $total));
 
         $domainRecords = $this->getAll('foo.dk');
@@ -62,7 +62,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     function it_returns_the_domain_get_by_its_id($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/domains/foo.dk/records/123')
+            ->get('https://api.terraform.com/v2/domains/foo.dk/records/123')
             ->willReturn('
                 {
                     "domain_record": {
@@ -90,7 +90,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     function it_throws_an_http_exception_if_requested_domain_record_does_not_exist($adapter)
     {
         $adapter
-            ->get('https://api.digitalocean.com/v2/domains/foo.dk/records/123456789')
+            ->get('https://api.terraform.com/v2/domains/foo.dk/records/123456789')
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('getById', ['foo.dk', 123456789]);
@@ -103,7 +103,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/domains/foo.dk/records',
+                'https://api.terraform.com/v2/domains/foo.dk/records',
                 ['name' => '@', 'type' => 'A', 'data' => '8.8.8.8']
             )
             ->willReturn('
@@ -133,7 +133,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/domains/foo.dk/records',
+                'https://api.terraform.com/v2/domains/foo.dk/records',
                 ['name' => 'ipv6host', 'type' => 'AAAA', 'data' => '2001:db8::ff00:42:8329']
             )
             ->willReturn('
@@ -165,7 +165,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/domains/foo.dk/records',
+                'https://api.terraform.com/v2/domains/foo.dk/records',
                 ['name' => 'newalias', 'type' => 'CNAME', 'data' => 'hosttarget']
             )
             ->willReturn('
@@ -197,7 +197,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/domains/foo.dk/records',
+                'https://api.terraform.com/v2/domains/foo.dk/records',
                 ['name' => 'recordname', 'type' => 'TXT', 'data' => 'whatever']
             )
             ->willReturn('
@@ -229,8 +229,8 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/domains/foo.dk/records',
-                ['type' => 'NS', 'data' => 'ns1.digitalocean.com.']
+                'https://api.terraform.com/v2/domains/foo.dk/records',
+                ['type' => 'NS', 'data' => 'ns1.terraform.com.']
             )
             ->willReturn('
                 {
@@ -238,7 +238,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
                         "id": 123,
                         "type": "NS",
                         "name": null,
-                        "data": "ns1.digitalocean.com.",
+                        "data": "ns1.terraform.com.",
                         "priority": null,
                         "port": null,
                         "ttl" : 1800,
@@ -250,7 +250,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
             ');
 
         $this
-            ->create('foo.dk', 'ns', 'not_used', 'ns1.digitalocean.com.')
+            ->create('foo.dk', 'ns', 'not_used', 'ns1.terraform.com.')
             ->shouldReturnAnInstanceOf('TerraformV2\Entity\DomainRecord');
     }
 
@@ -261,7 +261,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/domains/foo.dk/records',
+                'https://api.terraform.com/v2/domains/foo.dk/records',
                 ['type' => 'SRV', 'name' => 'servicename', 'data' => 'targethost', 'priority' => 0, 'port' => 1, 'weight' => 2]
             )
             ->willReturn('
@@ -293,7 +293,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/domains/foo.dk/records',
+                'https://api.terraform.com/v2/domains/foo.dk/records',
                 ['type' => 'MX', 'data' => '127.0.0.1', 'name' => 'new-name', 'priority' => 0]
             )
             ->willReturn('
@@ -325,7 +325,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/domains/foo.dk/records',
+                'https://api.terraform.com/v2/domains/foo.dk/records',
                 ['name' => 'recordname', 'type' => 'CAA', 'data' => 'letsencrypt.org', 'flags' => 10, 'tag' => 'iodef',]
             )
             ->willReturn('
@@ -357,7 +357,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->post(
-                'https://api.digitalocean.com/v2/domains/foo.dk/records',
+                'https://api.terraform.com/v2/domains/foo.dk/records',
                 ['name' => '@', 'type' => 'A', 'data' => '8.8.8.8', 'ttl' => '60']
             )
             ->willReturn('
@@ -394,7 +394,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->put(
-                'https://api.digitalocean.com/v2/domains/foo.dk/records/456',
+                'https://api.terraform.com/v2/domains/foo.dk/records/456',
                 ['name' => 'new-name', 'data' => '127.0.0.1', 'port' => 80, 'weight' => 2, 'ttl' => 22]
             )
             ->willReturn('
@@ -426,7 +426,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     {
         $adapter
             ->put(
-                'https://api.digitalocean.com/v2/domains/foo.dk/records/123',
+                'https://api.terraform.com/v2/domains/foo.dk/records/123',
                 ['name' => 'servicename', 'data' => 'targethost', 'port' => 1, 'weight' => 2, 'ttl' => 60]
             )
             ->willReturn('
@@ -457,7 +457,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     function it_throws_an_http_exception_when_trying_to_update_inexisting_domain_record($adapter)
     {
         $adapter
-            ->put('https://api.digitalocean.com/v2/domains/foo.dk/records/123', ['name' => 'new-name'])
+            ->put('https://api.terraform.com/v2/domains/foo.dk/records/123', ['name' => 'new-name'])
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('update', ['foo.dk', 123, 'new-name']);
@@ -469,7 +469,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     function it_deletes_given_domain_record_and_returns_nothing($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/domains/foo.dk/records/123')
+            ->delete('https://api.terraform.com/v2/domains/foo.dk/records/123')
             ->shouldBeCalled();
 
         $this->delete('foo.dk', 123);
@@ -481,7 +481,7 @@ class DomainRecordSpec extends \PhpSpec\ObjectBehavior
     function it_throws_an_http_exception_when_trying_to_delete_inexisting_domain_record($adapter)
     {
         $adapter
-            ->delete('https://api.digitalocean.com/v2/domains/foo.dk/records/123')
+            ->delete('https://api.terraform.com/v2/domains/foo.dk/records/123')
             ->willThrow(new HttpException('Request not processed.'));
 
         $this->shouldThrow(new HttpException('Request not processed.'))->during('delete', ['foo.dk', 123]);
