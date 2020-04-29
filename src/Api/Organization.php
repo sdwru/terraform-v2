@@ -30,4 +30,22 @@ class Organization extends AbstractApi
 
         return new OrganizationEntity($vars->data);
     }
+    
+    /**
+     * @param int $id
+     *
+     * @throws HttpException
+     *
+     * @return CredentialEntity
+     */
+    public function getByName($name)
+    {
+        $var = $this->adapter->get(sprintf('%s/organizations/%s', $this->endpoint, $name));
+
+        $var = json_decode($var);
+
+        return new OrganizationEntity($var);
+    }
+    
+    
 }
