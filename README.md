@@ -55,22 +55,25 @@ Account
 ```php
 // ...
 // return the the account api
-$me = $terraform->getUserInformtion();
+$account = $terraform->account()
+
+// return user information
+$me = $account->getUserInformtion();
 ````
 
-Job Template
+Organization
 ------
 
 ```php
 // ..
-// return the job template api
-$jobTemplate  = $awx->jobTemplate();
+// return the organization api
+$organization  = $terraform->organization();
 
-// return a collection of job template entity
-$actions = $jobTemplate->getAll();
+// return a collection of organization entity
+$allOrgs = $organization->getAll();
 
-// return the Job Template entity 123
-$JobTemplate123 = $jobTemplate->getById(123);
+// return the organization entity SomeOrgName
+$MyOrg = $organization->getByName('SomeOrgName');
 ```
 
 Contributing
