@@ -44,10 +44,10 @@ abstract class AbstractApi
      * @param AdapterInterface $adapter
      * @param string|null      $endpoint
      */
-    public function __construct(AdapterInterface $adapter, $endpoint = null)
+    public function __construct(AdapterInterface $adapter, $baseEndpoint)
     {
         $this->adapter = $adapter;
-        $this->endpoint = $endpoint ?: static::ENDPOINT;
+        $this->endpoint = $baseEndpoint . '/v2';
     }
 
     /**
