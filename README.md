@@ -35,7 +35,7 @@ This package should install guzzle automatically but if not install as follows:
 composer require guzzlehttp/guzzle:^6.0
 ```
 #### Example
-
+```php
 <?php
 
 require 'vendor/autoload.php';
@@ -49,15 +49,9 @@ $adapter = new GuzzleAdapter('your_access_token');
 
 // create a terraform object with the previous adapter
 $terraform = new TerraformV2($adapter);
-
-// ...
-
-// ...
 ```
-
 Me
 -------
-
 ```php
 // ...
 // return the the account api
