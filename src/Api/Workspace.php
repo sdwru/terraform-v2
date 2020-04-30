@@ -22,7 +22,7 @@ class Workspace extends AbstractApi
     /**
      * @return WorkspaceEntity
      */
-    public function getAll($organization, $per_page = 200, $page = 1)
+    public function getAll($organization, $per_page = 100, $page = 1)
     {
         // Special characters"[" and "]" in page[size] and page[number] need to be presented as URL % encoded so "%5B" and "%5D"
         // Since "%" is also a special character it needs to be escaped with another "%" to prevent interpreting.  So "%%5B" and "%%5D"
