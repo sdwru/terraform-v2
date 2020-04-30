@@ -11,7 +11,7 @@
 
 namespace TerraformV2\Api;
 
-use TerraformV2\Entity\Account as AccountEntity;
+use TerraformV2\Entity\Organization as OrganizationEntity;
 
 /**
  * @author Antoine Corcy <contact@sbin.dk>
