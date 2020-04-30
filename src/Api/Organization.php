@@ -24,7 +24,9 @@ class Organization extends AbstractApi
      */
     public function getAll($per_page = 200, $page = 1)
     {
-        $vars = $this->adapter->get(sprintf('%s/organizations?page[size]=%d&page[number]=%d', $this->endpoint, $per_page, $page));
+        // Special characters"[" and "]" in page[size] and page[number] need to be presented as URL % encoded so "%5B" and "%5D"
+        // Since "%" is also a special character it needs to be escaped with another "%" to prevent interpreting.  So "%%5B" and "%%5D"
+        $vars = $this->adapter->get(sprintf('%s/organizations?page%%5Bsize%%5D=%d&page%%5Bnumber%%5D=%d', $this->endpoint, $per_page, $page));
 
         $vars = json_decode($vars);
         
