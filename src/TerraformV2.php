@@ -13,20 +13,8 @@ namespace TerraformV2;
 
 use TerraformV2\Adapter\AdapterInterface;
 use TerraformV2\Api\Account;
-use TerraformV2\Api\Action;
-use TerraformV2\Api\Certificate;
-use TerraformV2\Api\Domain;
-use TerraformV2\Api\DomainRecord;
-use TerraformV2\Api\Droplet;
-use TerraformV2\Api\FloatingIp;
-use TerraformV2\Api\Image;
-use TerraformV2\Api\Key;
-use TerraformV2\Api\LoadBalancer;
-use TerraformV2\Api\RateLimit;
-use TerraformV2\Api\Region;
-use TerraformV2\Api\Size;
-use TerraformV2\Api\Snapshot;
-use TerraformV2\Api\Volume;
+use TerraformV2\Api\Organization;
+use TerraformV2\Api\Workspace;
 
 /**
  * @author Antoine Corcy <contact@sbin.dk>
@@ -62,114 +50,18 @@ class TerraformV2
     }
 
     /**
-     * @return Action
+     * @return Organization
      */
-    public function action()
+    public function organization()
     {
-        return new Action($this->adapter, $this->url);
+        return new Organization($this->adapter, $this->url);
     }
 
     /**
-     * @return Certificate
+     * @return Workspace
      */
-    public function certificate()
+    public function workspace()
     {
-        return new Certificate($this->adapter, $this->url);
-    }
-
-    /**
-     * @return Domain
-     */
-    public function domain()
-    {
-        return new Domain($this->adapter, $this->url);
-    }
-
-    /**
-     * @return DomainRecord
-     */
-    public function domainRecord()
-    {
-        return new DomainRecord($this->adapter, $this->url);
-    }
-
-    /**
-     * @return Droplet
-     */
-    public function droplet()
-    {
-        return new Droplet($this->adapter, $this->url);
-    }
-
-    /**
-     * @return FloatingIp
-     */
-    public function floatingIp()
-    {
-        return new FloatingIp($this->adapter, $this->url);
-    }
-
-    /**
-     * @return Image
-     */
-    public function image()
-    {
-        return new Image($this->adapter, $this->url);
-    }
-
-    /**
-     * @return Key
-     */
-    public function key()
-    {
-        return new Key($this->adapter, $this->url);
-    }
-
-    /**
-     * @return LoadBalancer
-     */
-    public function loadBalancer()
-    {
-        return new LoadBalancer($this->adapter, $this->url);
-    }
-
-    /**
-     * @return RateLimit
-     */
-    public function rateLimit()
-    {
-        return new RateLimit($this->adapter, $this->url);
-    }
-
-    /**
-     * @return Region
-     */
-    public function region()
-    {
-        return new Region($this->adapter, $this->url);
-    }
-
-    /**
-     * @return Size
-     */
-    public function size()
-    {
-        return new Size($this->adapter, $this->url);
-    }
-
-    /**
-     * @return Volume
-     */
-    public function volume()
-    {
-        return new Volume($this->adapter, $this->url);
-    }
-
-    /**
-     * @return Snapshot
-     */
-    public function snapshot()
-    {
-        return new Snapshot($this->adapter, $this->url);
+        return new Workspace($this->adapter, $this->url);
     }
 }

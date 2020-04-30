@@ -3,7 +3,7 @@
 /*
  * This file is part of the TerraformV2 library.
  *
- * (c) Antoine Corcy <contact@sbin.dk>
+ * (c) Sdwru https://github.com/sdwru
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,10 +12,10 @@
 namespace TerraformV2\Entity;
 
 /**
- * @author Yassir Hannoun <yassir.hannoun@gmail.com>
- * @author Graham Campbell <graham@alt-three.com>
+ *
+ *
  */
-final class Kernel extends AbstractEntity
+final class Workspace extends AbstractEntity
 {
     /**
      * @var int
@@ -25,10 +25,25 @@ final class Kernel extends AbstractEntity
     /**
      * @var string
      */
-    public $name;
+    public $type;
 
     /**
-     * @var string
+     * @var object
      */
-    public $version;
+    public $attributes;
+
+    /**
+     * @var object
+     */
+    public $relationships;
+
+    /**
+     * @var object
+     */
+    public $sshKey;
+    
+    /**
+     * @var object
+     */
+    public $links;
 }
