@@ -26,9 +26,11 @@ class Workspace extends AbstractApi
     {
         $vars = $this->adapter->get(sprintf('%s/organizations/%s/workspaces?page[size]=%d&page[number]=%d', $this->endpoint, $organization, $per_page, $page));
 
-        $var = json_decode($vars);
+        $vars = json_decode($vars);
 
-        return new WorkspaceEntity($vars->data);
+        return array_map(function ($var) {
+            return new WorkspaceEntity($var);
+        }, $vars->data);
     }
     
     /**
