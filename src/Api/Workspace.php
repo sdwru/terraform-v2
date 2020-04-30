@@ -24,6 +24,8 @@ class Workspace extends AbstractApi
      */
     public function getAll($organization, $per_page = 200, $page = 1)
     {
+        // Special characters"[" and "]" in page[size] and page[number] need to be presented as URL % encoded so "%5B" and "%5D"
+        // Since "%" is also a special character it needs to be escaped with another "%" to prevent interpreting.  So "%%5B" and "%%5D"
         $vars = $this->adapter->get(sprintf('%s/organizations/%s/workspaces?page%%5Bsize%%5D=%d&page%%5Bnumber%%5D=%d', $this->endpoint, $organization, $per_page, $page));
 
         $vars = json_decode($vars);
