@@ -26,9 +26,11 @@ class Organization extends AbstractApi
     {
         $vars = $this->adapter->get(sprintf('%s/organizations?page[size]=%d&page[number]=%d', $this->endpoint, $per_page, $page));
 
-        $account = json_decode($vars);
-
-        return new OrganizationEntity($vars->data);
+        $vars = json_decode($vars);
+        
+        return array_map(function ($var) {
+            return new OrganizationEntity($var);
+        }, $vars->data);
     }
     
     /**
