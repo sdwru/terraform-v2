@@ -24,7 +24,7 @@ class Workspace extends AbstractApi
      */
     public function getAll($organization, $per_page = 200, $page = 1)
     {
-        $vars = $this->adapter->get(sprintf('%s/organizations/%s/workspaces?page[size]=%d&page[number]=%d', $this->endpoint, $organization, $per_page, $page));
+        $vars = $this->adapter->get(sprintf('%s/organizations/%s/workspaces?page%%5Bsize%%5D=%d&page%%5Bnumber%%5D=%d', $this->endpoint, $organization, $per_page, $page));
 
         $vars = json_decode($vars);
 
