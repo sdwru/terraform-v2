@@ -3,6 +3,8 @@
 This is based on the Digital Ocean API V2
 https://github.com/toin0u/TerraformV2
 
+I took out the buzz http client adapter because I don't see any reason to use that.  I left in the abstract adapter class because it does no harm staying in there and makes it easier pulling up updates from the upstream project.  It also leaves open the possibility of adding other clients in the future.
+
 #### WORK IN PROGRESS
 
 I am adding things as I need them for my project so not all API features are implemented.  It should be relatively easy to look through the code and add anything that is not there based on your needs.  If you do that, please submit pull requests so that others can benefit.  I don't intent to make this a feature complete library on my own.  For what I am doing, I plan to do almost all writes, updates, additions, deletions etc. from the Terraform cloud GUI.  I will be using the API mostly for displaying lists and configurations and triggering runs.
