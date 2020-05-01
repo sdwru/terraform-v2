@@ -15,6 +15,7 @@ use TerraformV2\Adapter\AdapterInterface;
 use TerraformV2\Api\Account;
 use TerraformV2\Api\Organization;
 use TerraformV2\Api\Workspace;
+use TerraformV2\Api\Variable;
 
 /**
  * @author Antoine Corcy <contact@sbin.dk>
@@ -63,5 +64,13 @@ class TerraformV2
     public function workspace()
     {
         return new Workspace($this->adapter, $this->url);
+    }
+
+    /**
+     * @return Variable
+     */
+    public function variable()
+    {
+        return new Variable($this->adapter, $this->url);
     }
 }
