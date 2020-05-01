@@ -30,7 +30,7 @@ To use the bindings, use Composer's autoload:
 require_once('vendor/autoload.php');
 ```
 
-This package should install guzzle automatically but if not install as follows:
+This package should install guzzle automatically if it is not already installed, but if not install as follows:
 ```bash
 composer require guzzlehttp/guzzle:^6.3
 ```
