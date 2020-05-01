@@ -34,7 +34,9 @@ This package should install guzzle automatically if it is not already installed,
 ```bash
 composer require guzzlehttp/guzzle:^6.3
 ```
-#### Example
+### Examples
+
+First, get new API instance
 ```php
 <?php
 
