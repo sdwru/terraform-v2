@@ -26,7 +26,7 @@ class Variable extends AbstractApi
     {
         // Special characters"[" and "]" in page[size] and page[number] need to be presented as URL % encoded so "%5B" and "%5D"
         // Since "%" is also a special character it needs to be escaped with another "%" to prevent interpreting.  So "%%5B" and "%%5D"
-        $vars = $this->adapter->get(sprintf('%s/vars', $this->endpoint, $organization, $workspace));
+        $vars = $this->adapter->get(sprintf('%s/vars', $this->endpoint));
 
         $vars = json_decode($vars);
 
