@@ -14,7 +14,7 @@ I am adding things as I need them for my project so not all API features are imp
 Installation
 ------------
 
-If installing on Laravel use the install instructions at https://github.com/sdwru/Laravel-TerraformV2.
+If installing on Laravel use the install instructions at https://github.com/sdwru/Laravel-Terraform.
 
 You can install the bindings via Composer. If installing standalone to some generic php framework add the following to your composer.json
 ```
