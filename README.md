@@ -1,4 +1,4 @@
-### Terraform API V2
+### Terraform Cloud API V2
 
 This is based on the Digital Ocean API V2
 https://github.com/toin0u/TerraformV2
