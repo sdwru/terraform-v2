@@ -138,5 +138,5 @@ Covenant](http:contributor-covenant.org), version 1.0.0, available at
 License
 -------
 
-AwxV2 is released under the MIT License. See the bundled
+TerraformV2 is released under the MIT License. See the bundled
 [LICENSE](https://github.com/sdwru/terraform-v2/blob/master/LICENSE) file for details.
