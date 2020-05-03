@@ -38,7 +38,7 @@ class Variable extends AbstractApi
      */
     public function getByName($organization, $workspace)
     {
-        // Special characters"[" and "]" in filter[organization] and filter[workspace] need to be presented as URL % encoded so "%5B" and "%5D"
+        // Special characters"[" and "]" in filter[organization][name] and filter[workspace][name] need to be presented as URL % encoded so "%5B" and "%5D"
         // Since "%" is also a special character it needs to be escaped with another "%" to prevent interpreting.  So "%%5B" and "%%5D"
         $var = $this->adapter->get(sprintf('%s/vars?filter%%5Borganization%%5D%%5Bname%%5D=%s&filter%%5Bworkspace%%5D%%5Bname%%5D=%s', $this->endpoint, $organization, $workspace));
 
