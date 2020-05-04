@@ -13,9 +13,11 @@ namespace TerraformV2;
 
 use TerraformV2\Adapter\AdapterInterface;
 use TerraformV2\Api\Account;
+use TerraformV2\Api\OauthClient;
 use TerraformV2\Api\Organization;
 use TerraformV2\Api\Workspace;
 use TerraformV2\Api\Variable;
+
 
 /**
  * @author Antoine Corcy <contact@sbin.dk>
@@ -48,6 +50,14 @@ class TerraformV2
     public function account()
     {
         return new Account($this->adapter, $this->url);
+    }
+    
+     /**
+     * @return OauthClient
+     */
+    public function oauthClient()
+    {
+        return new OauthClient($this->adapter, $this->url);
     }
 
     /**
