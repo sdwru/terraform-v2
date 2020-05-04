@@ -22,16 +22,16 @@ class OauthClient extends AbstractApi
     /**
      * @return OauthClientEntity
      */
-    public function getAll($organization, $per_page = 100, $page = 1)
+    public function getAll($organization)
     {
         // Special characters"[" and "]" in page[size] and page[number] need to be presented as URL % encoded so "%5B" and "%5D"
         // Since "%" is also a special character it needs to be escaped with another "%" to prevent interpreting.  So "%%5B" and "%%5D"
-        $vars = $this->adapter->get(sprintf('%s/organizations/%s/workspaces?page%%5Bsize%%5D=%d&page%%5Bnumber%%5D=%d', $this->endpoint, $organization, $per_page, $page));
+        $vars = $this->adapter->get(sprintf('%s/organizations/%s/oauth-clients', $this->endpoint, $organization));
 
         $vars = json_decode($vars);
 
         return array_map(function ($var) {
-            return new WorkspaceEntity($var);
+            return new OauthClientEntity($var);
         }, $vars->data);
     }
     
@@ -58,13 +58,13 @@ class OauthClient extends AbstractApi
      *
      * @return OauthClientEntity
      */
-    public function getById($organization, $id)
+    public function getById($id)
     {
-        $var = $this->adapter->get(sprintf('%s/organizations/%s/workspaces/%d', $this->endpoint, $organization, $id));
+        $var = $this->adapter->get(sprintf('%s/oauth-clients/%d', $this->endpoint, $id));
 
         $var = json_decode($var);
 
-        return new WorkspaceEntity($var);
+        return new OauthClientEntity($var);
     }
     
 }
