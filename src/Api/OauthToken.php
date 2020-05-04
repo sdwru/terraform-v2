@@ -22,11 +22,11 @@ class OauthToken extends AbstractApi
     /**
      * @return OauthTokenEntity
      */
-    public function getAll($organization, $per_page = 100, $page = 1)
+    public function getAll($oauthClient)
     {
         // Special characters"[" and "]" in page[size] and page[number] need to be presented as URL % encoded so "%5B" and "%5D"
         // Since "%" is also a special character it needs to be escaped with another "%" to prevent interpreting.  So "%%5B" and "%%5D"
-        $vars = $this->adapter->get(sprintf('%s/organizations/%s/workspaces?page%%5Bsize%%5D=%d&page%%5Bnumber%%5D=%d', $this->endpoint, $organization, $per_page, $page));
+        $vars = $this->adapter->get(sprintf('%s/oauth-clients/%s/oauth-tokens', $this->endpoint, $oauthClient));
 
         $vars = json_decode($vars);
 
@@ -36,31 +36,15 @@ class OauthToken extends AbstractApi
     }
     
     /**
-     * @param string $name
-     *
-     * @throws HttpException
-     *
-     * @return OauthClientEntity
-     */
-    public function getByName($organization, $name)
-    {
-        $var = $this->adapter->get(sprintf('%s/organizations/%s/workspaces/%s', $this->endpoint, $organization, $name));
-
-        $var = json_decode($var);
-
-        return new OauthTokenEntity($var);
-    }
-    
-    /**
      * @param int $id
      *
      * @throws HttpException
      *
-     * @return OauthClientEntity
+     * @return OauthTokenEntity
      */
-    public function getById($organization, $id)
+    public function getById($id)
     {
-        $var = $this->adapter->get(sprintf('%s/organizations/%s/workspaces/%d', $this->endpoint, $organization, $id));
+        $var = $this->adapter->get(sprintf('%s/oauth-tokens/%s', $this->endpoint, $id));
 
         $var = json_decode($var);
 
