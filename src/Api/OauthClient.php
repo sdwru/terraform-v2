@@ -34,23 +34,7 @@ class OauthClient extends AbstractApi
             return new OauthClientEntity($var);
         }, $vars->data);
     }
-    
-    /**
-     * @param string $name
-     *
-     * @throws HttpException
-     *
-     * @return OauthClientEntity
-     */
-    public function getByName($organization, $name)
-    {
-        $var = $this->adapter->get(sprintf('%s/organizations/%s/workspaces/%s', $this->endpoint, $organization, $name));
 
-        $var = json_decode($var);
-
-        return new WorkspaceEntity($var);
-    }
-    
     /**
      * @param int $id
      *
