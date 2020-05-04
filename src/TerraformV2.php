@@ -14,6 +14,7 @@ namespace TerraformV2;
 use TerraformV2\Adapter\AdapterInterface;
 use TerraformV2\Api\Account;
 use TerraformV2\Api\OauthClient;
+use TerraformV2\Api\OauthToken;
 use TerraformV2\Api\Organization;
 use TerraformV2\Api\Workspace;
 use TerraformV2\Api\Variable;
@@ -58,6 +59,14 @@ class TerraformV2
     public function oauthClient()
     {
         return new OauthClient($this->adapter, $this->url);
+    }
+    
+    /**
+     * @return OauthToken
+     */
+    public function oauthToken()
+    {
+        return new OauthToken($this->adapter, $this->url);
     }
 
     /**
