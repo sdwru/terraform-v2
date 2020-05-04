@@ -17,7 +17,7 @@ use TerraformV2\Entity\OauthToken as OauthTokenEntity;
  * @author Antoine Corcy <contact@sbin.dk>
  * @author Graham Campbell <graham@alt-three.com>
  */
-class OauthClient extends AbstractApi
+class OauthToken extends AbstractApi
 {
     /**
      * @return OauthTokenEntity
