@@ -11,7 +11,7 @@
 
 namespace TerraformV2\Api;
 
-use TerraformV2\Entity\Workspace as WorkspaceEntity;
+use TerraformV2\Entity\OauthClient as OauthClientEntity;
 
 /**
  * @author Antoine Corcy <contact@sbin.dk>
