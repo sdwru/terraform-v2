@@ -36,11 +36,6 @@ final class OauthClient extends AbstractEntity
      * @var object
      */
     public $relationships;
-
-    /**
-     * @var object
-     */
-    public $sshKey;
     
     /**
      * @var object
