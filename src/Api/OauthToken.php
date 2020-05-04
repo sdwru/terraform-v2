@@ -31,7 +31,7 @@ class OauthToken extends AbstractApi
         $vars = json_decode($vars);
 
         return array_map(function ($var) {
-            return new WorkspaceEntity($var);
+            return new OauthTokenEntity($var);
         }, $vars->data);
     }
     
@@ -48,7 +48,7 @@ class OauthToken extends AbstractApi
 
         $var = json_decode($var);
 
-        return new WorkspaceEntity($var);
+        return new OauthTokenEntity($var);
     }
     
     /**
@@ -64,7 +64,7 @@ class OauthToken extends AbstractApi
 
         $var = json_decode($var);
 
-        return new WorkspaceEntity($var);
+        return new OauthTokenEntity($var);
     }
     
 }
