@@ -16,6 +16,7 @@ use TerraformV2\Api\Account;
 use TerraformV2\Api\OauthClient;
 use TerraformV2\Api\OauthToken;
 use TerraformV2\Api\Organization;
+use TerraformV2\Api\Run;
 use TerraformV2\Api\Workspace;
 use TerraformV2\Api\Variable;
 
@@ -75,6 +76,14 @@ class TerraformV2
     public function organization()
     {
         return new Organization($this->adapter, $this->url);
+    }
+    
+    /**
+     * @return Run
+     */
+    public function run()
+    {
+        return new Run($this->adapter, $this->url);
     }
 
     /**
