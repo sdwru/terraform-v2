@@ -62,7 +62,7 @@ class Run extends AbstractApi
     public function create($id)
     {
         $content = array(
-            'data' => 
+            'data' => array(
                 'relationships' => array(
                     'workspace' => array(
                         'data' => array(
@@ -71,7 +71,8 @@ class Run extends AbstractApi
                         ),
                     ),
                 ),
-            );
+            ),      
+        );
         print_r(json_encode($content);
         exit;
 
