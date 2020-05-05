@@ -22,33 +22,17 @@ class Run extends AbstractApi
     /**
      * @return RunEntity
      */
-    public function getAll($organization, $per_page = 100, $page = 1)
+    public function getAll($workspace, $per_page = 100, $page = 1)
     {
         // Special characters"[" and "]" in page[size] and page[number] need to be presented as URL % encoded so "%5B" and "%5D"
         // Since "%" is also a special character it needs to be escaped with another "%" to prevent interpreting.  So "%%5B" and "%%5D"
-        $vars = $this->adapter->get(sprintf('%s/organizations/%s/workspaces?page%%5Bsize%%5D=%d&page%%5Bnumber%%5D=%d', $this->endpoint, $organization, $per_page, $page));
+        $vars = $this->adapter->get(sprintf('%s/workspaces/%s/runs?page%%5Bsize%%5D=%d&page%%5Bnumber%%5D=%d', $this->endpoint, $workspace, $per_page, $page));
 
         $vars = json_decode($vars);
 
         return array_map(function ($var) {
-            return new WorkspaceEntity($var);
+            return new RunEntity($var);
         }, $vars->data);
-    }
-    
-    /**
-     * @param string $name
-     *
-     * @throws HttpException
-     *
-     * @return WorkspaceEntity
-     */
-    public function getByName($organization, $name)
-    {
-        $var = $this->adapter->get(sprintf('%s/organizations/%s/workspaces/%s', $this->endpoint, $organization, $name));
-
-        $var = json_decode($var);
-
-        return new WorkspaceEntity($var);
     }
     
     /**
@@ -58,13 +42,13 @@ class Run extends AbstractApi
      *
      * @return WorkspaceEntity
      */
-    public function getById($organization, $id)
+    public function getById($id)
     {
-        $var = $this->adapter->get(sprintf('%s/organizations/%s/workspaces/%d', $this->endpoint, $organization, $id));
+        $var = $this->adapter->get(sprintf('%s/runs/%d', $this->endpoint, $id));
 
         $var = json_decode($var);
 
-        return new WorkspaceEntity($var);
+        return new RunEntity($var);
     }
     
     /**
@@ -75,15 +59,27 @@ class Run extends AbstractApi
      *
      * @return DomainEntity
      */
-    public function create($name, $ipAddress)
+    public function create($id)
     {
-        $content = ['name' => $name, 'ip_address' => $ipAddress];
+        $content = array(
+            'data' => 
+                'relationships' => array(
+                    'workspace' => array(
+                        'data' => array(
+                            'type' => 'workspaces',
+                            'id' => $id,
+                        ),
+                    ),
+                ),
+            );
+        print_r(json_encode($content);
+        exit;
 
-        $domain = $this->adapter->post(sprintf('%s/domains', $this->endpoint), $content);
+        $var = $this->adapter->post(sprintf('%s/runs', $this->endpoint), $content);
 
-        $domain = json_decode($domain);
+        $var = json_decode($var);
 
-        return new DomainEntity($domain->domain);
+        return new RunEntity($var->data);
     }
     
     
