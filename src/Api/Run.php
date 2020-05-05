@@ -73,7 +73,7 @@ class Run extends AbstractApi
                 ),
             ),      
         );
-        print_r(json_encode($content);
+        print_r(json_encode($content));
         exit;
 
         $var = $this->adapter->post(sprintf('%s/runs', $this->endpoint), $content);
