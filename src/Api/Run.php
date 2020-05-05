@@ -59,10 +59,14 @@ class Run extends AbstractApi
      *
      * @return DomainEntity
      */
-    public function create($id)
+    public function create($id, $destroy = false, $message='', $configVersion = '' )
     {
         $content = array(
             'data' => array(
+                'attributes' => array(
+                    'is-destroy' = $destroy,
+                    (!empty($message)) ? message' => $message: ;
+                ),
                 'relationships' => array(
                     'workspace' => array(
                         'data' => array(
