@@ -40,10 +40,5 @@ final class Run extends AbstractEntity
     /**
      * @var object
      */
-    public $sshKey;
-    
-    /**
-     * @var object
-     */
     public $links;
 }
