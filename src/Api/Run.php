@@ -92,9 +92,7 @@ class Run extends AbstractApi
             unset($content['data']['relationships']['configuration-version']['data']['id']);
         }
 
-        $jsonContent = json_encode($content);
-
-        $var = $this->adapter->post(sprintf('%s/runs', $this->endpoint), $jsonContent);
+        $var = $this->adapter->post(sprintf('%s/runs', $this->endpoint), $content);
         return new RunEntity($var->data);
     }
     /**
