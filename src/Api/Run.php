@@ -1,4 +1,4 @@
-<?php
+?php
 
 /*
  * This file is part of the TerraformV2 library.
@@ -64,8 +64,8 @@ class Run extends AbstractApi
         $content = array(
             'data' => array(
                 'attributes' => array(
-                    'is-destroy' = $destroy,
-                    (!empty($message)) ? message' => $message: ;
+                    'is-destroy' => $destroy,
+                    'message' => $message
                 ),
                 'relationships' => array(
                     'workspace' => array(
@@ -74,19 +74,39 @@ class Run extends AbstractApi
                             'id' => $id,
                         ),
                     ),
+                    'configuration-version' => array(
+                        'data' => array(
+                            'type' => 'configuration-versions',
+                            'id' => $configVersion
+                        )
+                    )
                 ),
             ),      
         );
-        print_r(json_encode($content));
-        exit;
 
-        $var = $this->adapter->post(sprintf('%s/runs', $this->endpoint), $content);
+        if ($content['data']['attributes']['message'] === '' ) {
+            unset($content['data']['attributes']['message']);
+        }
 
-        $var = json_decode($var);
+        if ($content['data']['relationships']['configuration-version']['data']['id'] === '') {
+            unset($content['data']['relationships']['configuration-version']['data']['id']);
+        }
 
+        $jsonContent = json_encode($content);
+
+        $var = $this->adapter->post(sprintf('%s/runs', $this->endpoint), $jsonContent);
         return new RunEntity($var->data);
     }
-    
-    
-    
+    /**
+     * Undocumented function
+     *
+     * @param [type] $array
+     * @param [type] $key
+     * @param [type] $value
+     * @return void
+     */
+    private function recursiveRemove(&$array, $val)
+    {
+        
+    }
 }
