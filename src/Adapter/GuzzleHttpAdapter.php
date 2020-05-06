@@ -33,7 +33,10 @@ class GuzzleHttpAdapter implements AdapterInterface
     {
         if (version_compare(ClientInterface::VERSION, '6') === 1) {
             $this->client = $client ?: new Client([
-                'headers' => ['Authorization' => sprintf('Bearer %s', $token)],
+                'headers' => [
+                    'Content-Type' => 'application/vnd.api+json',
+                    'Authorization' => sprintf('Bearer %s', $token)
+                ],
                 'verify' => $verify
             ]);
         } else {
@@ -80,7 +83,7 @@ class GuzzleHttpAdapter implements AdapterInterface
     {
         $options = [];
 
-        $options[is_array($content) ? 'json' : 'body'] = $content;
+        $options['body'] = $content;
 
         try {
             $this->response = $this->client->put($url, $options);
@@ -99,7 +102,7 @@ class GuzzleHttpAdapter implements AdapterInterface
     {
         $options = [];
 
-        $options[is_array($content) ? 'json' : 'body'] = $content;
+        $options['body'] = $content;
 
         try {
             $this->response = $this->client->post($url, $options);
