@@ -82,6 +82,10 @@ class GuzzleHttpAdapter implements AdapterInterface
     public function put($url, $content = '')
     {
         $options = [];
+        
+        if (is_array($content)) {
+            $content = json_encode($content);
+        }
 
         $options['body'] = $content;
 
@@ -101,6 +105,13 @@ class GuzzleHttpAdapter implements AdapterInterface
     public function post($url, $content = '')
     {
         $options = [];
+        
+        // The terraform API expects content-type header application/vnd.api+json
+        // If we use content['json'] guzzle will do the json_encode and change content-type header to application/vnd.api+json
+        // So we have to do it ourselves with content['body'] so Guzzle does not override the custom content-type
+        if (is_array($content)) {
+            $content = json_encode($content);
+        }
 
         $options['body'] = $content;
 
