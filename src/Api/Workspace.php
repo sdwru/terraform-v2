@@ -67,4 +67,51 @@ class Workspace extends AbstractApi
         return new WorkspaceEntity($var);
     }
     
+    /**
+     * @param string $name
+     * @param string $ipAddress
+     *
+     * @throws HttpException
+     *
+     * @return WorkspaceEntity
+     */
+    public function create($organization, array $attributes=[])
+    {
+        // Refer to https://www.terraform.io/docs/cloud/api/workspaces.html
+        // For $attributes[].
+
+        //If no name given generate a random one.
+        if (!isset($attributes['name'])) {
+            $name = uniqid();
+        }
+
+        $array = array(
+            'data' => array(
+                'type' => 'workspaces',
+                'attributes' => array(
+                    'name' => $name,
+                    'allow-destroy-plan' => $attributes['allow-destroy-plan'] ?? true,
+                    'auto-apply' => $attributes['auto-apply'] ?? false,
+                    'description' => $attributes['description'] ?? '',
+                    'operations' => $attributes['operations'] ?? true,
+                    'file-triggers-enabled' => $attributes['file-triggers-enabled'] ?? true,
+                    'source-name' => $attributes['source-name'] ?? '',
+                    'source-url' => $attributes['source-url'] ?? '',
+                    'queue-all-runs' => $attributes['queue-all-runs'] ?? false,
+                    'speculative-enabled' => $attributes['speculative-enabled'] ?? true,
+                    'terraform-version' => $attributes['terraform-version'] ?? '',
+                    'trigger-prefixes' => $attributes['trigger-prefixes'] ?? [],
+                    'vcs-repo' => $attributes['vcs-repo'] ?? '',
+                )
+            )
+        );
+        $array = $this->removeEmptyArrayElements($array);
+
+        $var = $this->adapter->post(sprintf('%s/organizations/%s/workspaces', $this->endpoint, $organization), $array);
+        
+        $var = json_decode($var);
+        
+        return new WorkspaceEntity($var->data);
+    }
+    
 }
