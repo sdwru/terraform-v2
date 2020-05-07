@@ -18,7 +18,7 @@ use TerraformV2\Api\OauthToken;
 use TerraformV2\Api\Organization;
 use TerraformV2\Api\Run;
 use TerraformV2\Api\Workspace;
-use TerraformV2\Api\Variable;
+use TerraformV2\Api\WorkspaceVariable;
 
 
 /**
@@ -97,8 +97,8 @@ class TerraformV2
     /**
      * @return Variable
      */
-    public function variable()
+    public function workspaceVariable()
     {
-        return new Variable($this->adapter, $this->url);
+        return new WorkspaceVariable($this->adapter, $this->url);
     }
 }
