@@ -98,7 +98,7 @@ class Run extends AbstractApi
      *
      * @throws HttpException
      */
-    public function delete($id, $attributes = [])
+    public function delete($id, $attr = [])
     { 
         $array = array(
             'data' => array(
