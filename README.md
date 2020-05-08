@@ -6,7 +6,7 @@ https://github.com/toin0u/TerraformV2
 I took out the buzz http client adapter from the upstream project because I don't see any reason to use that.  I left in the guzzle adapter and interface because it does no do any harm staying in there and makes it easier pulling in updates from the upstream project.  It also leaves open the possibility of adding other clients in the future or making other changes that remain independent of the guzzle client.
 
 #### Requirements
-    PHP v7.0+
+* PHP v7.0+
 
 #### WORK IN PROGRESS
 
