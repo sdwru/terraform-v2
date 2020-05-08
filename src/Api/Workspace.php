@@ -75,7 +75,7 @@ class Workspace extends AbstractApi
      *
      * @return WorkspaceEntity
      */
-    public function create($organization, array $attributes=[])
+    public function create($organization, $attributes=[])
     {
         // Refer to https://www.terraform.io/docs/cloud/api/workspaces.html
         // For $attributes[].
@@ -105,6 +105,7 @@ class Workspace extends AbstractApi
                 )
             )
         );
+
         $array = $this->removeEmptyArrayElements($array);
 
         $var = $this->adapter->post(sprintf('%s/organizations/%s/workspaces', $this->endpoint, $organization), $array);
