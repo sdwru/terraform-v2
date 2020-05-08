@@ -80,7 +80,7 @@ abstract class AbstractApi
                     if(!sizeof($v)){ // check array count
                         unset($array[$k]);
                     }
-                }elseif(!strlen($v)){  // this will handle (int) type values correctly
+                }elseif(!strlen($v) !is_bool($v)){  // this will handle (int) type values correctly
                     unset($array[$k]);
                 }
         }
