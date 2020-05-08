@@ -1,6 +1,6 @@
 ### Terraform Cloud API V2
 #### Requirements
-* PHP v7.0+
+* PHP v7.1+
 
 This is based on the Digital Ocean API V2
 https://github.com/toin0u/TerraformV2
