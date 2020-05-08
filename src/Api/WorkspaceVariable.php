@@ -43,33 +43,27 @@ class WorkspaceVariable extends AbstractApi
      *
      * @return WorkspaceVariableEntity
      */
-    public function create($id, $attributes=[])
+    public function create($attr=[])
     {
         // Refer to https://www.terraform.io/docs/cloud/api/workspaces.html
-        // For $attributes[].
+        // For attributes $attr[].
 
         //If no name given generate a random one.
-        if (!isset($attributes['name'])) {
+        if (!isset($attr['name'])) {
             $name = uniqid();
         }
 
         $array = array(
             'data' => array(
-                'type' => 'workspaces',
+                'type' => 'vars',
                 'attributes' => array(
-                    'name' => $name,
-                    'allow-destroy-plan' => $attributes['allow-destroy-plan'] ?? true,
-                    'auto-apply' => $attributes['auto-apply'] ?? false,
-                    'description' => $attributes['description'] ?? '',
-                    'operations' => $attributes['operations'] ?? true,
-                    'file-triggers-enabled' => $attributes['file-triggers-enabled'] ?? true,
-                    'source-name' => $attributes['source-name'] ?? '',
-                    'source-url' => $attributes['source-url'] ?? '',
-                    'queue-all-runs' => $attributes['queue-all-runs'] ?? false,
-                    'speculative-enabled' => $attributes['speculative-enabled'] ?? true,
-                    'terraform-version' => $attributes['terraform-version'] ?? '',
-                    'trigger-prefixes' => $attributes['trigger-prefixes'] ?? [],
-                    'vcs-repo' => $attributes['vcs-repo'] ?? '',
+                    'key' => $attr['key'],
+                    'value' => $attr['value'] ?? '',
+                    'description' => $attr['description'] ?? 'Some description',
+                    'category' => $attr['category'],
+                    'hcl' => $attr['hcl'] ?? false,
+                    'sensitive' => $attr['sensitive'] ?? false
+                    
                 )
             )
         );
