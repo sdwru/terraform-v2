@@ -5,7 +5,7 @@
 This is based on the Digital Ocean API V2
 https://github.com/toin0u/TerraformV2
 
-I took out the buzz http client adapter from the upstream project because I don't see any reason to use that.  I left in the guzzle adapter and interface to keep things flexible.
+I took out the buzz http client and adapter from the upstream project because I don't see any reason to use that.  I left in the guzzle adapter and interface to keep things flexible.
 
 #### WORK IN PROGRESS
 
