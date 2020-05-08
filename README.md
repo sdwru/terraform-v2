@@ -96,7 +96,7 @@ $attributes = array(
 );
 
 $organization = 'SomeExistingOrganization';
-$newWorkspace = terraform->workspace()->create($organization, $attributes);
+$newWorkspace = $terraform->workspace()->create($organization, $attributes);
 ```
 
 
