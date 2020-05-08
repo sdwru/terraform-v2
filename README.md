@@ -94,6 +94,7 @@ $attributes = array(
         'default=branch' => true
     )
 );
+
 $organization = 'SomeExistingOrganization';
 $newWorkspace = terraform->workspace()->create($organization, $attributes);
 ```
