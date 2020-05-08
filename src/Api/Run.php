@@ -77,7 +77,7 @@ class Run extends AbstractApi
                     'configuration-version' => array(
                         'data' => array(
                             'type' => 'configuration-versions',
-                            'id' => $attributes['configuration-version]
+                            'id' => $attributes['configuration-version']
                         )
                     )
                 ),
