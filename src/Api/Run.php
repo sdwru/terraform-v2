@@ -61,7 +61,7 @@ class Run extends AbstractApi
      */
     public function create($id, $attributes = [])
     {
-        $content = array(
+        $array = array(
             'data' => array(
                 'attributes' => array(
                     'is-destroy' => $attributes['is-destroy'] ?? false,
@@ -84,9 +84,9 @@ class Run extends AbstractApi
             ),      
         );
 
-        $content = $this->removeEmptyArrayElements($content);
+        $array = $this->removeEmptyArrayElements($array);
 
-        $var = $this->adapter->post(sprintf('%s/runs', $this->endpoint), $content);
+        $var = $this->adapter->post(sprintf('%s/runs', $this->endpoint), $array);
         
         $var = json_decode($var);
         
@@ -100,7 +100,7 @@ class Run extends AbstractApi
      */
     public function delete($id, $attributes = [])
     { 
-        $content = array(
+        $array = array(
             'data' => array(
                 'attributes' => array(
                     'is-destroy' => $attributes['is-destroy'] ?? true,
@@ -124,9 +124,9 @@ class Run extends AbstractApi
             ),      
         );
         
-        $content = $this->removeEmptyArrayElements($content);
+        $array = $this->removeEmptyArrayElements($array);
 
-        $this->adapter->delete(sprintf('%s/runs/%d', $this->endpoint, $content));
+        $this->adapter->delete(sprintf('%s/runs/%d', $this->endpoint, $array));
     }
     
 }
