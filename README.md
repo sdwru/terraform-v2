@@ -56,7 +56,7 @@ $adapter = new GuzzleAdapter('your_access_token');
 // create a terraform object with the previous adapter
 $terraform = new TerraformV2($adapter);
 ```
-Account
+Account Example
 -------
 ```php
 // ...
@@ -67,7 +67,7 @@ $account = $terraform->account()
 $me = $account->getUserInformtion();
 ````
 
-Organization
+Organization Example
 ------
 
 ```php
@@ -81,7 +81,7 @@ $allOrgs = $organization->getAll();
 // return the organization entity SomeOrgName
 $myOrg = $organization->getByName('SomeOrgName');
 ```
-Workspace
+Workspace Example
 ------
 Create a new workspace that connects to exising github repository `someuser/terraform-digitalocean-basic`
 default (`master`) branch using existing OAuth Token ID for the organization`ot-zodQQ9enMBdopBCK`.  This token ID can be retrieved from Terraform Cloud GUI `organization > Settings > VCS Providers` or using the API.
