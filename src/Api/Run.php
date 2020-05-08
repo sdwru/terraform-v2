@@ -59,13 +59,13 @@ class Run extends AbstractApi
      *
      * @return DomainEntity
      */
-    public function create($id, $attributes = [])
+    public function create($id, $attr = [])
     {
         $array = array(
             'data' => array(
                 'attributes' => array(
-                    'is-destroy' => $attributes['is-destroy'] ?? false,
-                    'message' => $attributes['message'] ?? ''
+                    'is-destroy' => $attr['is-destroy'] ?? false,
+                    'message' => $attr['message'] ?? ''
                 ),
                 'relationships' => array(
                     'workspace' => array(
@@ -77,7 +77,7 @@ class Run extends AbstractApi
                     'configuration-version' => array(
                         'data' => array(
                             'type' => 'configuration-versions',
-                            'id' => $attributes['configuration-version'] ?? ''
+                            'id' => $attr['configuration-version'] ?? ''
                         )
                     )
                 ),
@@ -103,8 +103,8 @@ class Run extends AbstractApi
         $array = array(
             'data' => array(
                 'attributes' => array(
-                    'is-destroy' => $attributes['is-destroy'] ?? true,
-                    'message' => $attributes['message'] ?? ''
+                    'is-destroy' => $attr['is-destroy'] ?? true,
+                    'message' => $attr['message'] ?? ''
                 ),
                 'type' => 'runs', 
                 'relationships' => array(
@@ -117,7 +117,7 @@ class Run extends AbstractApi
                     'configuration-version' => array(
                         'data' => array(
                             'type' => 'configuration-versions',
-                            'id' => $attributes['configuration-version'] ?? ''
+                            'id' => $attr['configuration-version'] ?? ''
                         )
                     )
                 ),
