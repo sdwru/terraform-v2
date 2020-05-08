@@ -124,8 +124,10 @@ class Run extends AbstractApi
                 ),
             ),      
         );
+        
+        $content = $this->removeEmptyArrayElements($content);
 
-        $this->adapter->delete(sprintf('%s/runs/%d', $this->endpoint, $id));
+        $this->adapter->delete(sprintf('%s/runs/%d', $this->endpoint, $content));
     }
     
 }
