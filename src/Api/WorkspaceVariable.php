@@ -22,11 +22,11 @@ class WorkspaceVariable extends AbstractApi
     /**
      * @return WorkspaceVariableEntity
      */
-    public function getAll($organization, $per_page = 100, $page = 1)
+    public function getAll($id, $per_page = 100, $page = 1)
     {
         // Special characters"[" and "]" in page[size] and page[number] need to be presented as URL % encoded so "%5B" and "%5D"
         // Since "%" is also a special character it needs to be escaped with another "%" to prevent interpreting.  So "%%5B" and "%%5D"
-        $vars = $this->adapter->get(sprintf('%s/organizations/%s/workspaces?page%%5Bsize%%5D=%d&page%%5Bnumber%%5D=%d', $this->endpoint, $organization, $per_page, $page));
+        $vars = $this->adapter->get(sprintf('%s/workspaces/%d/vars?page%%5Bsize%%5D=%d&page%%5Bnumber%%5D=%d', $this->endpoint, $id, $per_page, $page));
 
         $vars = json_decode($vars);
 
@@ -37,45 +37,13 @@ class WorkspaceVariable extends AbstractApi
     
     /**
      * @param string $name
-     *
-     * @throws HttpException
-     *
-     * @return WorkspaceVariableEntity
-     */
-    public function getByName($organization, $name)
-    {
-        $var = $this->adapter->get(sprintf('%s/organizations/%s/workspaces/%s', $this->endpoint, $organization, $name));
-
-        $var = json_decode($var);
-
-        return new WorkspaceVariableEntity($var);
-    }
-    
-    /**
-     * @param int $id
-     *
-     * @throws HttpException
-     *
-     * @return WorkspaceVariableEntity
-     */
-    public function getById($organization, $id)
-    {
-        $var = $this->adapter->get(sprintf('%s/organizations/%s/workspaces/%d', $this->endpoint, $organization, $id));
-
-        $var = json_decode($var);
-
-        return new WorkspaceVariableEntity($var);
-    }
-    
-    /**
-     * @param string $name
      * @param string $ipAddress
      *
      * @throws HttpException
      *
      * @return WorkspaceVariableEntity
      */
-    public function create($organization, $attributes=[])
+    public function create($id, $attributes=[])
     {
         // Refer to https://www.terraform.io/docs/cloud/api/workspaces.html
         // For $attributes[].
@@ -108,7 +76,7 @@ class WorkspaceVariable extends AbstractApi
 
         $array = $this->removeEmptyArrayElements($array);
 
-        $var = $this->adapter->post(sprintf('%s/organizations/%s/workspaces', $this->endpoint, $organization), $array);
+        $var = $this->adapter->post(sprintf('%s/workspaces/%d/vars', $this->endpoint, $organization), $array);
         
         $var = json_decode($var);
         
