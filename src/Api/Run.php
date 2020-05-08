@@ -59,13 +59,13 @@ class Run extends AbstractApi
      *
      * @return DomainEntity
      */
-    public function create($id, $destroy = false, $message='', $configVersion = '' )
+    public function create($id, $attributes = [])
     {
         $content = array(
             'data' => array(
                 'attributes' => array(
-                    'is-destroy' => $destroy,
-                    'message' => $message
+                    'is-destroy' => $attributes['is-destroy'] ?? false,
+                    'message' => $attributes['message'] ?? ''
                 ),
                 'relationships' => array(
                     'workspace' => array(
@@ -77,7 +77,7 @@ class Run extends AbstractApi
                     'configuration-version' => array(
                         'data' => array(
                             'type' => 'configuration-versions',
-                            'id' => $configVersion
+                            'id' => $attributes['configuration-version]
                         )
                     )
                 ),
