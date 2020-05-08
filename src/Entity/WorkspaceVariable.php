@@ -18,11 +18,6 @@ namespace TerraformV2\Entity;
 final class WorkspaceVariable extends AbstractEntity
 {
     /**
-     * @var int
-     */
-    public $id;
-
-    /**
      * @var string
      */
     public $type;
@@ -31,19 +26,4 @@ final class WorkspaceVariable extends AbstractEntity
      * @var object
      */
     public $attributes;
-
-    /**
-     * @var object
-     */
-    public $relationships;
-
-    /**
-     * @var object
-     */
-    public $sshKey;
-    
-    /**
-     * @var object
-     */
-    public $links;
 }
