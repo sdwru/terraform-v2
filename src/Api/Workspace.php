@@ -75,13 +75,13 @@ class Workspace extends AbstractApi
      *
      * @return WorkspaceEntity
      */
-    public function create($organization, $attributes=[])
+    public function create($organization, $attr=[])
     {
         // Refer to https://www.terraform.io/docs/cloud/api/workspaces.html
-        // For $attributes[].
+        // For attributes $attr[].
 
         //If no name given generate a random one.
-        if (!isset($attributes['name'])) {
+        if (!isset($attr['name'])) {
             $name = uniqid();
         }
 
@@ -90,18 +90,18 @@ class Workspace extends AbstractApi
                 'type' => 'workspaces',
                 'attributes' => array(
                     'name' => $name,
-                    'allow-destroy-plan' => $attributes['allow-destroy-plan'] ?? true,
-                    'auto-apply' => $attributes['auto-apply'] ?? false,
-                    'description' => $attributes['description'] ?? '',
-                    'operations' => $attributes['operations'] ?? true,
-                    'file-triggers-enabled' => $attributes['file-triggers-enabled'] ?? true,
-                    'source-name' => $attributes['source-name'] ?? '',
-                    'source-url' => $attributes['source-url'] ?? '',
-                    'queue-all-runs' => $attributes['queue-all-runs'] ?? false,
-                    'speculative-enabled' => $attributes['speculative-enabled'] ?? true,
-                    'terraform-version' => $attributes['terraform-version'] ?? '',
-                    'trigger-prefixes' => $attributes['trigger-prefixes'] ?? [],
-                    'vcs-repo' => $attributes['vcs-repo'] ?? '',
+                    'allow-destroy-plan' => $attr['allow-destroy-plan'] ?? true,
+                    'auto-apply' => $attr['auto-apply'] ?? false,
+                    'description' => $attr['description'] ?? '',
+                    'operations' => $attr['operations'] ?? true,
+                    'file-triggers-enabled' => $attr['file-triggers-enabled'] ?? true,
+                    'source-name' => $attr['source-name'] ?? '',
+                    'source-url' => $attr['source-url'] ?? '',
+                    'queue-all-runs' => $attr['queue-all-runs'] ?? false,
+                    'speculative-enabled' => $attr['speculative-enabled'] ?? true,
+                    'terraform-version' => $attr['terraform-version'] ?? '',
+                    'trigger-prefixes' => $attr['trigger-prefixes'] ?? [],
+                    'vcs-repo' => $attr['vcs-repo'] ?? '',
                 )
             )
         );
