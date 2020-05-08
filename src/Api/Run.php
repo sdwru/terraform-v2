@@ -84,13 +84,7 @@ class Run extends AbstractApi
             ),      
         );
 
-        if ($content['data']['attributes']['message'] === '' ) {
-            unset($content['data']['attributes']['message']);
-        }
-
-        if ($content['data']['relationships']['configuration-version']['data']['id'] === '') {
-            unset($content['data']['relationships']['configuration-version']['data']['id']);
-        }
+        $content = $this->removeEmptyArrayElements($content);
 
         $var = $this->adapter->post(sprintf('%s/runs', $this->endpoint), $content);
         
@@ -98,16 +92,40 @@ class Run extends AbstractApi
         
         return new RunEntity($var->data);
     }
+    
     /**
-     * Undocumented function
+     * @param int $id
      *
-     * @param [type] $array
-     * @param [type] $key
-     * @param [type] $value
-     * @return void
+     * @throws HttpException
      */
-    private function recursiveRemove(&$array, $val)
+    public function delete($id, $attributes = [])
     {
         
+        $content = array(
+            'data' => array(
+                'attributes' => array(
+                    'is-destroy' => $attributes['is-destroy'] ?? true,
+                    'message' => $attributes['message'] ?? ''
+                ),
+                'type' => 'runs', 
+                'relationships' => array(
+                    'workspace' => array(
+                        'data' => array(
+                            'type' => 'workspaces',
+                            'id' => $id,
+                        ),
+                    ),
+                    'configuration-version' => array(
+                        'data' => array(
+                            'type' => 'configuration-versions',
+                            'id' => $attributes['configuration-version'] ?? ''
+                        )
+                    )
+                ),
+            ),      
+        );
+
+        $this->adapter->delete(sprintf('%s/runs/%d', $this->endpoint, $id));
     }
+    
 }
