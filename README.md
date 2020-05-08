@@ -84,7 +84,7 @@ $myOrg = $organization->getByName('SomeOrgName');
 Workspace
 ------
 Create a new workspace that connects to exising github repository `someuser/terraform-digitalocean-basic`
-default (`master`) branch using existing oauth-token-id for the organization`ot-zodQQ9enMBdopBCK`.  This token-id can be retrieved from Terraform Cloud GUI `organization > Settings > VCS Providers or using the API.
+default (`master`) branch using existing OAuth Token ID for the organization`ot-zodQQ9enMBdopBCK`.  This token ID can be retrieved from Terraform Cloud GUI `organization > Settings > VCS Providers` or using the API.
 ```php
 $attributes = array(
     'vcs-repo' => array(
