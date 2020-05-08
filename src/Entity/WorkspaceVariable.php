@@ -15,7 +15,7 @@ namespace TerraformV2\Entity;
  *
  *
  */
-final class Workspace extends AbstractEntity
+final class WorkspaceVariable extends AbstractEntity
 {
     /**
      * @var int
