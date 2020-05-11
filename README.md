@@ -108,7 +108,7 @@ $oauthClientList = $terraform->oauthClient()->getAll($organization);
 Return client details.
 ```php
 $oauthClientId = 'someOauthClientId'
-$OauthClientDetails = $terraform->oauthClient()->getById($oauthClientId);
+$oauthClientDetails = $terraform->oauthClient()->getById($oauthClientId);
 ```
 Contributing
 ------------
