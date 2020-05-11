@@ -103,7 +103,7 @@ Oauth Client Example
 Return Oauth Client collection by organization.
 ```php
 $organization = 'SomeExistingOrganization';
-$oauthClientList = $terraform->oauthClient()->getByOrg($organization);
+$oauthClientList = $terraform->oauthClient()->getAll($organization);
 ```
 ```php
 Return details of a client
