@@ -105,8 +105,8 @@ Return Oauth Client collection by organization.
 $organization = 'SomeExistingOrganization';
 $oauthClientList = $terraform->oauthClient()->getAll($organization);
 ```
+Return client details.
 ```php
-Return details of a client
 $oauthClientId = 'someOauthClientId'
 $OauthClientDetails = $terraform->oauthClient()->getById($oauthClientId);
 ```
