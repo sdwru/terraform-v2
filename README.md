@@ -98,9 +98,13 @@ $attributes = array(
 $organization = 'SomeExistingOrganization';
 $newWorkspace = $terraform->workspace()->create($organization, $attributes);
 ```
-
-
-
+Oauth Client Example
+------
+Return Oauth Clients by organization.
+```php
+$organization = 'SomeExistingOrganization';
+$oauthClient = $terraform->oauthClient()->getByOrg($organization);
+```
 
 Contributing
 ------------
