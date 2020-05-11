@@ -100,7 +100,7 @@ $newWorkspace = $terraform->workspace()->create($organization, $attributes);
 ```
 Oauth Client Example
 ------
-Return Oauth Clients by organization.
+Return Oauth Client collection by organization.
 ```php
 $organization = 'SomeExistingOrganization';
 $oauthClient = $terraform->oauthClient()->getByOrg($organization);
