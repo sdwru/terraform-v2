@@ -22,7 +22,7 @@ class OauthClient extends AbstractApi
     /**
      * @return OauthClientEntity
      */
-    public function getByOrg($organization)
+    public function getAll($organization)
     {
         // Special characters"[" and "]" in page[size] and page[number] need to be presented as URL % encoded so "%5B" and "%5D"
         // Since "%" is also a special character it needs to be escaped with another "%" to prevent interpreting.  So "%%5B" and "%%5D"
