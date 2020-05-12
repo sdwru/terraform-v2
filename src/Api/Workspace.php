@@ -116,13 +116,13 @@ class Workspace extends AbstractApi
     }
     
     /**
-     * @param int $id
+     * @param string $id
      *
      * @throws HttpException
      */
     public function delete($id)
     {
-        $this->adapter->delete(sprintf('%s/workspaces/%d', $this->endpoint, $id));
+        $this->adapter->delete(sprintf('%s/workspaces/%s', $this->endpoint, $id));
     }
     
     /**
