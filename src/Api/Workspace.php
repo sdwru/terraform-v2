@@ -115,4 +115,24 @@ class Workspace extends AbstractApi
         return new WorkspaceEntity($var->data);
     }
     
+    /**
+     * @param int $id
+     *
+     * @throws HttpException
+     */
+    public function delete($id)
+    {
+        $this->adapter->delete(sprintf('%s/workspaces/%d', $this->endpoint, $id));
+    }
+    
+    /**
+     * @param string $organizatoin
+     * @param string $name
+     *
+     * @throws HttpException
+     */
+    public function deleteByName($organization, $name)
+    {
+        $this->adapter->delete(sprintf('%s/organizations/%s/workspaces/%s', $this->endpoint, $organization, $name));
+    }
 }
